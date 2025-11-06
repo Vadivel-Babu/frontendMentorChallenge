@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Visiting Card</title>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      :root {
+        font-family: "Roboto", sans-serif;
+      }
+      body {
+        background: #08705b;
+        background: linear-gradient(
+          120deg,
+          rgba(8, 112, 91, 1) 0%,
+          rgba(9, 121, 115, 1) 53%,
+          rgba(8, 161, 166, 1) 100%
+        );
+        display: grid;
+        place-items: center;
+        height: 100vh;
+      }
+      .bg-gradient {
+        background: linear-gradient(
+          120deg,
+          rgba(13, 8, 112, 1) 0%,
+          rgba(9, 9, 121, 1) 53%,
+          rgba(8, 98, 166, 1) 100%
+        );
+      }
+      .card {
+        background-color: rgb(37, 70, 88);
+        color: rgb(123, 218, 218);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+      }
+      .card__content {
+        border: 2px dashed rgb(38, 204, 204);
+        padding: 25px 40px;
+        border-radius: 10px;
+      }
+      p {
+        margin-top: 5px;
+      }
+      .title {
+        font-weight: 800;
+      }
+      .card:hover {
+        transform: scale(1.1);
+        color: rgb(100, 128, 252);
+        box-shadow: rgba(106, 220, 255, 0.411) 0px 7px 29px 0px;
+      }
+      .card:hover .card__content {
+        border: 1px solid rgb(0, 60, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card__content">
+        <h1 class="name">Vadivel Babu</h1>
+        <p class="title"><i>Full Stack Engineer</i></p>
+        <p class="mail">vadivel1893@gmail.com</p>
+        <p class="mail">+91 9488321578</p>
+      </div>
+    </div>
+    <script>
+      const card = document.querySelector(".card");
+      const body = document.querySelector("body");
+      card.addEventListener("mouseenter", () => {
+        body.classList.add("bg-gradient");
+      });
+
+      card.addEventListener("mouseleave", () => {
+        body.classList.remove("bg-gradient");
+      });
+    </script>
+  </body>
+</html>
