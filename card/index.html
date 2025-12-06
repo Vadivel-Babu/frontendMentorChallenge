@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>card</title>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      :root {
+        --yellow: #f4d04e;
+        --gray: #6b6b6b;
+        --dark-gray: #111111;
+        --white: #fff;
+      }
+      body {
+        background-color: var(--yellow);
+        display: grid;
+        place-items: center;
+        font-family: "Figtree", sans-serif;
+        width: 100dvw;
+        height: 100dvh;
+        color: var(--dark-gray);
+      }
+      .card {
+        background-color: var(--white);
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--dark-gray);
+        box-shadow: 10px 10px var(--dark-gray);
+      }
+      .card img {
+        width: 340px;
+      }
+      .chip {
+        padding: 4px 12px;
+        background-color: var(--yellow);
+        border-radius: 4px;
+        font-weight: bold;
+        width: max-content;
+        font-size: 14px;
+        margin: 15px 0 8px 0;
+      }
+      .date {
+        font-size: 14px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: bolder;
+        margin: 15px 0;
+      }
+      .para {
+        max-width: 330px;
+        color: var(--gray);
+        line-height: 1.5;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .user > img {
+        width: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img src="./blog.svg" alt="blog" />
+      <p class="chip">Learning</p>
+      <p class="date">Published 21 Dec 2023</p>
+      <h1 class="title">HTML & CSS foundations</h1>
+      <p class="para">
+        These languages are the backbone of every website, defining structure,
+        content, and presentation.
+      </p>
+      <div class="user">
+        <img src="./userpic.svg" alt="user" />
+        <h3>Greg Hooper</h3>
+      </div>
+    </div>
+  </body>
+</html>
