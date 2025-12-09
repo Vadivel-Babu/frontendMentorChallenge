@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Social Link Card</title>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --dark-gray: #141414;
+        --gray: #1f1f1f;
+        --light-gray: #333333;
+        --green: #c4f82a;
+        --white: #fff;
+      }
+      body {
+        width: 100dvw;
+        height: 100dvh;
+        display: grid;
+        place-content: center;
+        font-family: "Inter", sans-serif;
+        background-color: var(--dark-gray);
+      }
+      .card {
+        background-color: var(--gray);
+        padding: 25px 20px;
+        border-radius: 12px;
+        width: 384px;
+      }
+      .img {
+        width: 88px;
+        margin: 20px auto;
+      }
+      .card h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      h1,
+      p,
+      a {
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--white);
+      }
+      .location {
+        color: var(--green);
+      }
+      .desigination {
+        font-weight: 400;
+        margin: 20px auto;
+      }
+      .chip {
+        background-color: var(--light-gray);
+        border-radius: 8px;
+        width: 100%;
+        padding: 14px 0;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin: 6px 0;
+      }
+      .chip:hover {
+        background-color: var(--green);
+        color: var(--light-gray);
+      }
+      @media (max-width: 400px) {
+        .card {
+          width: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="img">
+        <img src="./profile-pic.png" alt="" />
+      </div>
+      <h1>Jessica Randall</h1>
+      <p class="location">London, United Kingdom</p>
+      <p class="desigination">"Front-end developer and avid reader."</p>
+      <a href="#" class="chip" target="_blank">GitHub</a>
+      <a href="#" class="chip" target="_blank">Frontend Mentor</a>
+      <a href="#" class="chip" target="_blank">LinkedIn</a>
+      <a href="#" class="chip" target="_blank">Twitter</a>
+      <a href="#" class="chip" target="_blank">Instagram</a>
+    </div>
+  </body>
+</html>
