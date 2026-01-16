@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+.hero-background {
+  min-height: 100vh;
+  background-image: url("../images/hero.png");
+  background-size: cover;
+  background-position: center;
+  color: var(--white-color);
+  padding: 20px;
+}
+.site-header {
+  margin-top: 20px;
+}
+.logo > a {
+  color: var(--white-color);
+  font-size: 40px;
+}
+.main-nav > ul,
+.footer-nav > ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.main-nav > ul li a,
+.footer-nav > ul li a {
+  color: var(--white-color);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1090px;
+  margin: 0 auto;
+}
+.hero-box {
+  border: 2px solid var(--white-color);
+  padding: 2rem;
+  max-width: 500px;
+  margin-top: 250px;
+}
+.hero-box > h1 {
+  font-weight: 200;
+  font-size: 72px;
+}
+.hero-content {
+  max-width: 1090px;
+  margin: 0 auto;
+}
+.about {
+  padding: 20px;
+}
+.about-content {
+  max-width: 1090px;
+  margin: 80px auto;
+  position: relative;
+}
+.about-details {
+  background-color: var(--white-color);
+  max-width: 540px;
+  position: absolute;
+  padding: 80px;
+  bottom: 0;
+  right: 0;
+}
+.about-details > h1 {
+  font-size: 45px;
+  font-weight: 300;
+  color: var(--black-color);
+}
+.about-details > p {
+  font-size: 15px;
+  margin-top: 10px;
+  line-height: 25px;
+}
+.gallery-content {
+  max-width: 1090px;
+  margin: 80px auto;
+}
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gallery-header > h1 {
+  font-size: 45px;
+  font-weight: 300;
+}
+.gallery-btn {
+  border: 1px solid var(--black-color);
+  padding: 10px 25px;
+  background-color: var(--white-color);
+  letter-spacing: 5px;
+  transition: all 0.3s ease;
+}
+.gallery-btn:hover {
+  color: var(--white-color);
+  background-color: var(--black-color);
+}
+.gallery-imgs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.gallery-img {
+  background: url("../images/nature.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 450px;
+  width: 250px;
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  display: flex;
+  align-items: end;
+}
+.gallery-img::after {
+  content: "";
+  position: absolute;
+  background-color: #332d2d9c;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.gallery-img > h1 {
+  color: var(--white-color);
+  font-weight: 200;
+  font-size: 32px;
+}
+.footer {
+  background-color: var(--black-color);
+  padding: 20px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1090px;
+  margin: 0 auto;
+}
+.logo.footer {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.logo.footer > a {
+  font-size: 25px;
+}
+.footer-content-right > p {
+  color: var(--white-color);
+}
