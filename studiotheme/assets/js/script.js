@@ -6,11 +6,11 @@ const now = new Date();
 
 menuBtn.addEventListener("click", () => {
   menu.classList.add("active");
-  document.querySelector("body").style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 });
 close.addEventListener("click", () => {
   menu.classList.remove("active");
-  document.querySelector("body").style.overflow = "auto";
+  document.body.style.overflow = "auto";
 });
 
 span.textContent = now.getFullYear();
