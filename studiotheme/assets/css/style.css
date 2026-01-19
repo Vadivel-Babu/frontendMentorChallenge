@@ -39,9 +39,46 @@ body {
   align-items: center;
   gap: 15px;
 }
+.menu-btn {
+  display: none;
+}
 .main-nav > ul li a,
-.footer-nav > ul li a {
+.footer-nav > ul li a,
+.main-nav-mobile > ul li a {
   color: var(--white-color);
+}
+.main-nav-mobile {
+  background-color: #000;
+  position: fixed;
+  padding: 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: none;
+}
+
+.main-nav-mobile.active {
+  display: block;
+}
+.menu-header > .logo a {
+  font-size: 30px;
+}
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-nav-mobile > ul {
+  list-style: none;
+  margin-top: 40px;
+}
+.main-nav-mobile > ul li {
+  margin-top: 15px;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 .header-inner {
   display: flex;
@@ -80,10 +117,11 @@ body {
   bottom: 0;
   right: 0;
 }
-.about-details > h1 {
+.about-details > h2 {
   font-size: 45px;
   font-weight: 300;
   color: var(--black-color);
+  text-transform: uppercase;
 }
 .about-details > p {
   font-size: 15px;
@@ -110,6 +148,9 @@ body {
   letter-spacing: 5px;
   transition: all 0.3s ease;
 }
+.gallery-b-btn {
+  display: none;
+}
 .gallery-btn:hover {
   color: var(--white-color);
   background-color: var(--black-color);
@@ -118,6 +159,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+  padding: 20px;
 }
 .gallery-img {
   background: url("../images/nature.jpg");
@@ -141,7 +183,7 @@ body {
   height: 100%;
   z-index: -1;
 }
-.gallery-img > h1 {
+.gallery-img > h3 {
   color: var(--white-color);
   font-weight: 200;
   font-size: 32px;
@@ -163,6 +205,89 @@ body {
 .logo.footer > a {
   font-size: 25px;
 }
+.social-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .footer-content-right > p {
   color: var(--white-color);
+  margin-top: 10px;
+}
+@media screen and (max-width: 1020px) {
+  .gallery-header {
+    justify-content: center;
+  }
+  .gallery-header > .gallery-btn {
+    display: none;
+  }
+  .gallery-imgs {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+  .gallery-img {
+    width: 100%;
+    max-height: 150px;
+  }
+  .gallery-b-btn {
+    display: flex;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-nav > ul {
+    display: none;
+  }
+  .menu-btn,
+  .menu-btn--close {
+    background-color: transparent;
+    border: 0;
+    display: inline-block;
+  }
+  .hero-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-img {
+    width: 100%;
+  }
+  .about-img > img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .about-details {
+    position: relative;
+
+    max-width: 100%;
+    text-align: center;
+    padding: 40px;
+  }
+  .about-details > h2 {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 680px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo.footer {
+    padding: 0;
+    margin: 10px auto;
+    max-width: max-content;
+  }
+  .footer-nav > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .social-icon {
+    width: max-content;
+    margin: 0 auto;
+  }
 }
