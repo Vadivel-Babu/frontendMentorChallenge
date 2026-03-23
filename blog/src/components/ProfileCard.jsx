@@ -2,7 +2,12 @@ import { Avatar, Badge, Paper } from "@mantine/core";
 
 const ProfileCard = () => {
   return (
-    <Paper shadow="sm" radius="md" component="div" className="p-2 w-50">
+    <Paper
+      shadow="sm"
+      radius="md"
+      component="div"
+      className="p-2 w-50 max-h-max"
+    >
       <Avatar
         color="cyan"
         radius="xl"
