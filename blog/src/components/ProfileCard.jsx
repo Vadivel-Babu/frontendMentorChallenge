@@ -1,4 +1,5 @@
 import { Avatar, Badge, Paper } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 const ProfileCard = () => {
   return (
@@ -27,6 +28,12 @@ const ProfileCard = () => {
       <p className="text-center mt-1">
         Status: <Badge color="green">Active</Badge>
       </p>
+      <Link
+        to={"/setting"}
+        className="text-center block mt-3 text-blue-600 underline hover:text-blue-400 text-[12px] font-bold"
+      >
+        Edit Profile
+      </Link>
     </Paper>
   );
 };

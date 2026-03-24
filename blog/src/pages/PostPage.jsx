@@ -1,9 +1,20 @@
-import React from 'react'
+import { Breadcrumbs, Anchor } from "@mantine/core";
+
+const items = [
+  { title: "Home", href: "/" },
+  { title: "Post", href: "#" },
+].map((item, index) => (
+  <Anchor href={item.href} key={index}>
+    {item.title}
+  </Anchor>
+));
 
 const PostPage = () => {
   return (
-    <div>PostPage</div>
-  )
-}
+    <div className="container p-2">
+      <Breadcrumbs>{items}</Breadcrumbs>
+    </div>
+  );
+};
 
-export default PostPage
+export default PostPage;

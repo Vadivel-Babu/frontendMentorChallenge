@@ -12,9 +12,10 @@ import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { BiSolidLike, BiCommentDetail } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { PiShareNetworkFill } from "react-icons/pi";
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = () => {
+  const navigate = useNavigate();
   return (
     <Paper
       component="div"
@@ -76,7 +77,7 @@ const PostCard = () => {
         <Badge>like 0</Badge>
         <Badge>comment 0</Badge>
       </div>
-      <div className="flex justify-evenly border-t mt-1 py-1">
+      <div className="flex justify-evenly border-t my-3 pt-3">
         <Button leftSection={<BiSolidLike />} variant="default">
           like
         </Button>
@@ -94,7 +95,11 @@ const PostCard = () => {
             </Button>
           )}
         </CopyButton>
-        <Button rightSection={<FaArrowRightLong />} variant="default">
+        <Button
+          onClick={() => navigate("/post")}
+          rightSection={<FaArrowRightLong />}
+          variant="default"
+        >
           View
         </Button>
       </div>
