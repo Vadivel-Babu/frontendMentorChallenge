@@ -1,10 +1,24 @@
 import React from "react";
-import { Paper, Text, Title } from "@mantine/core";
+import { Badge, Paper, Text, Title } from "@mantine/core";
+import { NavLink } from "react-router-dom";
 
 const TopPostCard = () => {
   return (
-    <Paper shadow="xs" radius="md" component="div" className="px-2 py-4">
-      <Title>Top Post</Title>
+    <Paper shadow="xs" radius="md" p={"md"} component="div" mah={"max-content"}>
+      <Title size={25}>Most liked post</Title>
+      <p>
+        category:
+        <Badge color="teal" ml={3}>
+          java
+        </Badge>{" "}
+      </p>
+      <p>Author Name</p>
+      <NavLink
+        to={"/post"}
+        className={"text-blue-600 underline hover:text-blue-200"}
+      >
+        View Post
+      </NavLink>
     </Paper>
   );
 };
