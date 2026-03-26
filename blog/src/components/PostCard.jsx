@@ -50,6 +50,7 @@ const PostCard = () => {
           radius="md"
           src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
         />
+        <h1 className="font-bold my-0.5 text-2xl">Title</h1>
         <Text truncate="end">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
           libero, delectus quaerat eveniet odit velit explicabo voluptatum

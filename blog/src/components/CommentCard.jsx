@@ -13,7 +13,7 @@ import React from "react";
 
 const CommentCard = () => {
   return (
-    <Paper shadow="xs" radius="md" component="div" className="p-2">
+    <Paper shadow="xs" radius="md" component="div" p={10}>
       <div className="flex justify-between">
         <div className="flex items-center space-x-1">
           <Avatar
