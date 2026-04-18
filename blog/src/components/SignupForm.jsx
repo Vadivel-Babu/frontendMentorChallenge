@@ -1,4 +1,4 @@
-import { Button, Input } from "@mantine/core";
+import { ActionIcon, Button, Input } from "@mantine/core";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -6,6 +6,7 @@ import { useSignin } from "../hooks/useUsers";
 
 const SignupForm = () => {
   const [data, setData] = useState({ name: "", email: "", password: "" });
+  const [isVisible, setIsVisible] = useState(false);
   const { mutate, isPending, isError, error, isSuccess } = useSignin();
 
   async function handleSignin() {
@@ -34,6 +35,7 @@ const SignupForm = () => {
         placeholder="name"
         name="name"
         type="text"
+        value={data.name}
         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
       />
       <Input
@@ -41,13 +43,25 @@ const SignupForm = () => {
         placeholder="email"
         type="email"
         name="email"
+        value={data.email}
         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
       />
       <Input
         my={"sm"}
         placeholder="password"
-        type="password"
+        value={data.password}
+        type={isVisible ? "text" : "password"}
         name="password"
+        rightSectionPointerEvents="all"
+        rightSection={
+          <ActionIcon
+            onClick={() => setIsVisible(!isVisible)}
+            variant="transparent"
+            color="gray"
+          >
+            {isVisible ? <FaEyeSlash /> : <FaEye />}
+          </ActionIcon>
+        }
         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
       />
       <Button onClick={handleSignin}>signin</Button>

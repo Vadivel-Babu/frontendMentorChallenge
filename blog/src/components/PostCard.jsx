@@ -14,26 +14,22 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { PiShareNetworkFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
   const navigate = useNavigate();
   return (
     <Paper
       component="div"
-      shadow="sm"
+      shadow="md"
       radius="md"
       className="p-2 max-w-175 md:w-full"
+      id={post.id}
     >
       <div className="flex justify-between">
         <div className="flex items-center space-x-1">
-          <Avatar
-            color="cyan"
-            src={
-              "https://img.freepik.com/free-photo/woman-beach-with-her-baby-enjoying-sunset_52683-144131.jpg?size=626&ext=jpg"
-            }
-          >
-            jk
+          <Avatar color="cyan" src={post?.author_img}>
+            {post?.author_name[0]}
           </Avatar>
-          <h1 className="font-semibold ">name</h1>
+          <h1 className="font-semibold "> {post?.author_name}</h1>
         </div>
         <div className="flex items-center space-x-1">
           <ActionIcon color="red">
@@ -48,39 +44,22 @@ const PostCard = () => {
         <Image
           h={200}
           radius="md"
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
+          src={post.img}
+          fallbackSrc="https://placehold.co/600x400?text=Placeholder"
         />
-        <h1 className="font-bold my-0.5 text-2xl">Title</h1>
-        <Text truncate="end">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
-          libero, delectus quaerat eveniet odit velit explicabo voluptatum
-          architecto quia, odio accusamus! Quia quisquam impedit inventore
-          architecto repellendus culpa sit aliquam. Perferendis esse non
-          delectus officia mollitia, eos sequi illum praesentium. Quo doloremque
-          repellendus aliquam corrupti. Eaque, earum nostrum exercitationem quo
-          quaerat nihil asperiores, doloribus recusandae, fugiat facilis
-          voluptatum architecto dignissimos. Porro qui sapiente amet, tenetur
-          soluta aspernatur quia fugit suscipit alias exercitationem ipsum
-          optio? Rerum voluptatibus veniam asperiores, itaque facere quibusdam
-          consectetur labore fuga laborum temporibus incidunt laboriosam tempore
-          delectus? Mollitia fugit consequatur architecto ab quos libero aliquam
-          eos et eveniet consequuntur corporis alias asperiores aliquid quidem
-          quam vel consectetur animi similique quod vitae ad, repudiandae
-          aperiam! Laudantium, enim aspernatur? Iure possimus voluptate labore,
-          beatae maxime voluptatem? Excepturi quibusdam, provident, velit esse
-          dignissimos accusamus fuga maiores nostrum magni ab, quaerat aliquid.
-          Nobis magnam, assumenda mollitia a corporis cumque ipsum quos?
-          Distinctio est deserunt doloribus rerum, esse temporibus quidem,
-          inventore consequatur cumque tempore in labore nostrum soluta non
-        </Text>
+        <h1 className="font-bold my-0.5 text-2xl">{post?.title}</h1>
+        <Text truncate="end">{post?.content}</Text>
       </div>
       <div className="flex justify-between">
-        <Badge>like 0</Badge>
-        <Badge>comment 0</Badge>
+        <Badge>like {post?.total_likes}</Badge>
+        <Badge>comment {post?.total_comments}</Badge>
       </div>
       <div className="flex justify-evenly border-t my-3 pt-3">
-        <Button leftSection={<BiSolidLike />} variant="default">
-          like
+        <Button
+          leftSection={<BiSolidLike />}
+          variant={post?.is_Liked ? "filled" : "transparent"}
+        >
+          {!post?.is_Liked ? "like" : "liked"}
         </Button>
         <Button leftSection={<BiCommentDetail />} variant="default">
           comment
@@ -97,7 +76,7 @@ const PostCard = () => {
           )}
         </CopyButton>
         <Button
-          onClick={() => navigate("/post")}
+          onClick={() => navigate(`/post/${post.id}`)}
           rightSection={<FaArrowRightLong />}
           variant="default"
         >
