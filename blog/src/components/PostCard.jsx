@@ -7,15 +7,26 @@ import {
   Badge,
   Button,
   CopyButton,
+  Input,
 } from "@mantine/core";
 import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { BiSolidLike, BiCommentDetail } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { PiShareNetworkFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const PostCard = ({ post }) => {
   const navigate = useNavigate();
+  const [postId, setPostId] = useState(0);
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [comment, setComment] = useState("");
+
+  function handleCloseCommentBox() {
+    setIsCommentOpen(false);
+    setPostId(0);
+    setComment("");
+  }
   return (
     <Paper
       component="div"
@@ -50,6 +61,20 @@ const PostCard = ({ post }) => {
         <h1 className="font-bold my-0.5 text-2xl">{post?.title}</h1>
         <Text truncate="end">{post?.content}</Text>
       </div>
+      {isCommentOpen && postId === post.id && (
+        <div className="my-1">
+          <h1>Comment:</h1>
+          <Input
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="your comment..."
+          />
+          <Button color="black">submit</Button>
+          <Button color="red" onClick={handleCloseCommentBox}>
+            close
+          </Button>
+        </div>
+      )}
       <div className="flex justify-between">
         <Badge>like {post?.total_likes}</Badge>
         <Badge>comment {post?.total_comments}</Badge>
@@ -58,18 +83,32 @@ const PostCard = ({ post }) => {
         <Button
           leftSection={<BiSolidLike />}
           variant={post?.is_Liked ? "filled" : "transparent"}
+          color={post?.is_Liked ? "blue" : "black"}
         >
           {!post?.is_Liked ? "like" : "liked"}
         </Button>
-        <Button leftSection={<BiCommentDetail />} variant="default">
+        <Button
+          leftSection={<BiCommentDetail />}
+          color="black"
+          variant="transparent"
+          onClick={() => {
+            if (!isCommentOpen) {
+              setIsCommentOpen(true);
+              setPostId(post?.id);
+            } else {
+              handleCloseCommentBox();
+            }
+          }}
+        >
           comment
         </Button>
         <CopyButton value="https://mantine.dev">
           {({ copied, copy }) => (
             <Button
               leftSection={<PiShareNetworkFill />}
-              variant="default"
+              variant="transparent"
               onClick={copy}
+              color="black"
             >
               {copied ? "Copied" : "share"}
             </Button>
@@ -77,8 +116,9 @@ const PostCard = ({ post }) => {
         </CopyButton>
         <Button
           onClick={() => navigate(`/post/${post.id}`)}
+          color="black"
           rightSection={<FaArrowRightLong />}
-          variant="default"
+          variant="transparent"
         >
           View
         </Button>
