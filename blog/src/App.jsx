@@ -8,6 +8,7 @@ import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import EditPostPage from "./pages/EditPostPage";
 
 function App() {
   return (
@@ -53,6 +54,14 @@ function App() {
           element={
             <ProtectedRoute>
               <PostPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/post"
+          element={
+            <ProtectedRoute>
+              <EditPostPage />
             </ProtectedRoute>
           }
         />
