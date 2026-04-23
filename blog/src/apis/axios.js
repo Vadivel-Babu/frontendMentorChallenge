@@ -2,11 +2,8 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://blog.test",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
-
+api.defaults.headers.post["Content-Type"] = "application/json";
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

@@ -19,8 +19,12 @@ export const createPost = async (data) => {
 };
 
 // UPDATE Post
-export const updatePost = async (data, id) => {
-  const res = await api.post(`/posts/${id}`, data);
+export const updatePost = async ({ id, formData }) => {
+  const res = await api.post(`/posts/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 };
 

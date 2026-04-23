@@ -15,11 +15,14 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { PiShareNetworkFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDeletePost } from "../hooks/usePosts";
+import toast from "react-hot-toast";
 
 const PostCard = ({ post, user }) => {
   const navigate = useNavigate();
   const [postId, setPostId] = useState(0);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const { mutate } = useDeletePost();
   const [comment, setComment] = useState("");
 
   function handleCloseCommentBox() {
@@ -27,6 +30,22 @@ const PostCard = ({ post, user }) => {
     setPostId(0);
     setComment("");
   }
+
+  const handleDelete = (id) => {
+    const toastId = toast.loading("Deleting post...");
+    mutate(id, {
+      onSuccess: (res) => {
+        toast.success(res.message || "Deleted successfully", {
+          id: toastId,
+        });
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "Delete failed", {
+          id: toastId,
+        });
+      },
+    });
+  };
   return (
     <Paper
       component="div"
@@ -52,7 +71,7 @@ const PostCard = ({ post, user }) => {
         <div
           className={`flex items-center space-x-1 ${post.userId === user.id ? "visible" : "invisible"}`}
         >
-          <ActionIcon color="red">
+          <ActionIcon color="red" onClick={() => handleDelete(post.id)}>
             <MdOutlineDeleteOutline />
           </ActionIcon>
           <ActionIcon color="gray" onClick={() => navigate(`/edit/${post.id}`)}>

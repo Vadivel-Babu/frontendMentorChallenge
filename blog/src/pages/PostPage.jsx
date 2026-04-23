@@ -13,7 +13,7 @@ import {
   Loader,
 } from "@mantine/core";
 import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import { useContext, useState } from "react";
 import { useGetPostById } from "../hooks/usePosts";
@@ -31,6 +31,7 @@ const items = [
 const PostPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetPostById(id);
   console.log(data);
@@ -57,7 +58,10 @@ const PostPage = () => {
               <ActionIcon color="red">
                 <MdOutlineDeleteOutline />
               </ActionIcon>
-              <ActionIcon color="gray">
+              <ActionIcon
+                onClick={() => navigate(`/edit/${data?.post?.id}`)}
+                color="gray"
+              >
                 <MdOutlineModeEdit />
               </ActionIcon>
             </div>
