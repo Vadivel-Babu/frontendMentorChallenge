@@ -41,10 +41,12 @@ const LoginForm = () => {
         name="email"
         value={data.email}
         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
+        className="caret-blue-500"
       />
       <Input
         my={"sm"}
         placeholder="password"
+        className="caret-blue-500"
         type={isVisible ? "text" : "password"}
         name="password"
         rightSectionPointerEvents="all"

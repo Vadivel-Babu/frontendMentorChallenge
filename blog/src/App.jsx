@@ -58,7 +58,7 @@ function App() {
           }
         />
         <Route
-          path="/post"
+          path="/edit/:id"
           element={
             <ProtectedRoute>
               <EditPostPage />

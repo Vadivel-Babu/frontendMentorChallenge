@@ -1,4 +1,4 @@
-import { Button, Title } from "@mantine/core";
+import { Button, Title, Avatar } from "@mantine/core";
 import { useContext } from "react";
 import { CiLogout, CiLogin } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
@@ -27,9 +27,24 @@ const Navbar = () => {
                 color="gray"
                 rightSection={<CiLogout />}
                 onClick={() => logout()}
+                className="cursor-pointer xl:hidden"
               >
                 logout
               </Button>
+              <div className="inline-block md:hidden">
+                <Avatar
+                  color="cyan"
+                  radius="xl"
+                  size={"md"}
+                  className="cursor-pointer xl:hidden"
+                  onClick={() => navigate("/profile")}
+                  src={
+                    "https://img.freepik.com/free-photo/woman-beach-with-her-baby-enjoying-sunset_52683-144131.jpg?size=626&ext=jpg"
+                  }
+                >
+                  MK
+                </Avatar>
+              </div>
             </>
           ) : (
             <Button

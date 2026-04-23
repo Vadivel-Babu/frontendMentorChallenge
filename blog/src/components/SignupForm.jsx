@@ -33,6 +33,7 @@ const SignupForm = () => {
       <h1 className="font-bold text-2xl text-center my-3">Signup</h1>
       <Input
         placeholder="name"
+        className="caret-blue-500"
         name="name"
         type="text"
         value={data.name}
@@ -41,6 +42,7 @@ const SignupForm = () => {
       <Input
         my={"sm"}
         placeholder="email"
+        className="caret-blue-500"
         type="email"
         name="email"
         value={data.email}
@@ -48,6 +50,7 @@ const SignupForm = () => {
       />
       <Input
         my={"sm"}
+        className="caret-blue-500"
         placeholder="password"
         value={data.password}
         type={isVisible ? "text" : "password"}

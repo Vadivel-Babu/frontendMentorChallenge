@@ -11,22 +11,19 @@ import {
 import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import React from "react";
 
-const CommentCard = () => {
+const CommentCard = ({ comment, user }) => {
   return (
-    <Paper shadow="xs" radius="md" component="div" p={10}>
+    <Paper key={comment?.id} withBorder radius="md" component="div" p={10}>
       <div className="flex justify-between">
         <div className="flex items-center space-x-1">
-          <Avatar
-            color="cyan"
-            src={
-              "https://img.freepik.com/free-photo/woman-beach-with-her-baby-enjoying-sunset_52683-144131.jpg?size=626&ext=jpg"
-            }
-          >
-            jk
+          <Avatar color="cyan" src={comment?.author_img}>
+            {comment?.author_name[0]}
           </Avatar>
-          <h1 className="font-semibold ">name</h1>
+          <h1 className="font-semibold ">{comment?.author_name}</h1>
         </div>
-        <div className="flex items-center space-x-1">
+        <div
+          className={`flex items-center space-x-1 ${comment.userId === user.id ? "visible" : "invisible"}`}
+        >
           <ActionIcon color="red">
             <MdOutlineDeleteOutline />
           </ActionIcon>
@@ -35,15 +32,7 @@ const CommentCard = () => {
           </ActionIcon>
         </div>
       </div>
-      <p className="mt-2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea possimus
-        praesentium aliquam vel illo quos, adipisci recusandae suscipit,
-        doloremque esse quidem fugit velit consequatur facere culpa unde neque.
-        Distinctio, vero. Quidem veniam officia quod totam fugiat vel sapiente,
-        odit provident asperiores quaerat consequuntur repudiandae sed nesciunt
-        error facere velit voluptates mollitia obcaecati placeat? Illo
-        reprehenderit distinctio dignissimos molestiae iure velit?
-      </p>
+      <p className="mt-2">{comment?.content}</p>
     </Paper>
   );
 };

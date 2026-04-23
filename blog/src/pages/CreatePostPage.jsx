@@ -27,14 +27,14 @@ const CreatePostPage = () => {
       <Breadcrumbs>{items}</Breadcrumbs>
       <h1 className="font-bold text-2xl text-center my-3">Create Post</h1>
       <Box maw={700} mx={"auto"}>
-        <Input label="Title" placeholder="title" />
+        <Input className="caret-blue-500" label="Title" placeholder="title" />
         <Select
           my={"sm"}
           label="Your favorite library"
           placeholder="Pick value"
           value={value}
           onChange={(e) => setValue(e)}
-          data={["React", "Angular", "Vue", "Svelte"]}
+          data={["javascript", "php", "python"]}
         />
         <Textarea
           label="content"
@@ -53,7 +53,7 @@ const CreatePostPage = () => {
         </FileButton>
         <br />
         <Button>Publish</Button>
-        <Button ml={3}>Save as Draft</Button>
+        {/* <Button ml={3}>Save as Draft</Button> */}
       </Box>
     </div>
   );

@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+@layer utilities {
+  /* For Chrome, Safari, and Edge */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px; /* Adjust width as needed */
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #6d2ffd;
+    border-radius: 10px;
+  }
+
+  /* For Firefox */
+  .scrollbar-thin {
+    scrollbar-width: thin; /* Firefox only supports 'auto', 'thin', and 'none' */
+    scrollbar-color: #2696ffb9 transparent;
+  }
+}
+
 .container {
   max-width: 1400px;
   margin: 0 auto;

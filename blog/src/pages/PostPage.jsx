@@ -15,8 +15,9 @@ import {
 import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { NavLink, useParams } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useGetPostById } from "../hooks/usePosts";
+import { AuthContext } from "../context/AuthContext";
 
 const items = [
   { title: "Home", href: "/" },
@@ -29,9 +30,10 @@ const items = [
 
 const PostPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const { data, isLoading } = useGetPostById(id);
-  console.log(data?.post, id, data?.comments);
+  console.log(data);
 
   return (
     <div className="container p-2">
@@ -49,7 +51,9 @@ const PostPage = () => {
               </Avatar>
               <h1 className="font-semibold ">{data?.post?.author_name}</h1>
             </div>
-            <div className="flex items-center space-x-1">
+            <div
+              className={`flex items-center space-x-1 ${data?.post?.userId === user.id ? "visible" : "invisible"}`}
+            >
               <ActionIcon color="red">
                 <MdOutlineDeleteOutline />
               </ActionIcon>
@@ -89,7 +93,15 @@ const PostPage = () => {
                 <Button>submit</Button>
               </div>
             )}
-            <CommentCard />
+            {data?.comments?.length > 0 ? (
+              <div className="flex-col space-y-1 max-h-25 overflow-y-scroll scrollbar-thin py-1">
+                {data?.comments?.map((comment) => (
+                  <CommentCard key={comment.id} comment={comment} user={user} />
+                ))}{" "}
+              </div>
+            ) : (
+              <p>No comments</p>
+            )}
           </Box>
         </Box>
       )}

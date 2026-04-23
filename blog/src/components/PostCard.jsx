@@ -16,7 +16,7 @@ import { PiShareNetworkFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, user }) => {
   const navigate = useNavigate();
   const [postId, setPostId] = useState(0);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -30,9 +30,8 @@ const PostCard = ({ post }) => {
   return (
     <Paper
       component="div"
-      shadow="md"
       radius="md"
-      className="p-2 max-w-175 md:w-full"
+      className="p-2 w-full md:w-130 lg:w-175 border border-gray-300"
       id={post.id}
     >
       <div className="flex justify-between">
@@ -40,13 +39,23 @@ const PostCard = ({ post }) => {
           <Avatar color="cyan" src={post?.author_img}>
             {post?.author_name[0]}
           </Avatar>
-          <h1 className="font-semibold "> {post?.author_name}</h1>
+          <div>
+            <h1 className="font-semibold "> {post?.author_name}</h1>
+            <div className="text-[12px] italic">
+              Category:{" "}
+              <Badge color="cyan" size="xs">
+                {post?.category}
+              </Badge>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center space-x-1">
+        <div
+          className={`flex items-center space-x-1 ${post.userId === user.id ? "visible" : "invisible"}`}
+        >
           <ActionIcon color="red">
             <MdOutlineDeleteOutline />
           </ActionIcon>
-          <ActionIcon color="gray">
+          <ActionIcon color="gray" onClick={() => navigate(`/edit/${post.id}`)}>
             <MdOutlineModeEdit />
           </ActionIcon>
         </div>
@@ -68,9 +77,10 @@ const PostCard = ({ post }) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="your comment..."
+            my={3}
           />
           <Button color="black">submit</Button>
-          <Button color="red" onClick={handleCloseCommentBox}>
+          <Button ml={5} color="red" onClick={handleCloseCommentBox}>
             close
           </Button>
         </div>
