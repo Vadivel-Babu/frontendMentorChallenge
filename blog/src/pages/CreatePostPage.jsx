@@ -10,7 +10,7 @@ import {
   Box,
 } from "@mantine/core";
 import { useContext, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useCreatePost } from "../hooks/usePosts";
 import toast from "react-hot-toast";
@@ -27,6 +27,7 @@ const items = [
 const CreatePostPage = () => {
   const [value, setValue] = useState("php");
   const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
     category: "",
@@ -142,7 +143,9 @@ const CreatePostPage = () => {
         <Button loading={isPending} onClick={handleCreatePost}>
           Publish
         </Button>
-        {/* <Button ml={3}>Save as Draft</Button> */}
+        <Button color="black" ml={3} onClick={() => navigate(-1)}>
+          Back
+        </Button>
       </Box>
     </div>
   );

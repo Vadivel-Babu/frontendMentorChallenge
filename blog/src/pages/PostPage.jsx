@@ -95,9 +95,9 @@ const PostPage = () => {
           <h1 className="text-center font-bold text-3xl">
             {data?.post?.title}
           </h1>
-          <p className="text-center font-extrabold text-gray-400">
+          <div className="text-center font-extrabold text-gray-400">
             Category: <Badge color="cyan">{data?.post?.category}</Badge>
-          </p>
+          </div>
           <div className="my-1 p-1">
             <Image
               h={300}
@@ -133,7 +133,7 @@ const PostPage = () => {
               </div>
             )}
             {data?.comments?.length > 0 ? (
-              <div className="flex-col space-y-1 max-h-40 overflow-y-scroll scrollbar-thin py-1">
+              <div className="flex-col space-y-1 max-h-70 overflow-y-scroll scrollbar-thin py-1">
                 {data?.comments?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} user={user} />
                 ))}{" "}

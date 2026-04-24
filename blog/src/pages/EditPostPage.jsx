@@ -29,7 +29,7 @@ const items = [
 const EditPostPage = () => {
   const navigate = useNavigate();
   const [preview, setPreview] = useState(null);
-  const [newImg, setNewImg] = useState(null);
+  //const [newImg, setNewImg] = useState(null);
   const [postData, setPostData] = useState({
     title: "",
     img: null,
@@ -69,9 +69,7 @@ const EditPostPage = () => {
     formData.append("category", postData.category);
     formData.append("userId", user.id);
 
-    if (newImg) {
-      formData.append("img", newImg);
-    } else if (postData.img) {
+    if (postData.img) {
       formData.append("img", postData.img);
     }
 
@@ -137,35 +135,64 @@ const EditPostPage = () => {
               minRows={3}
               maxRows={6}
             />
-            {postData?.img && !preview && !newImg && (
-              <Image
-                src={postData?.img}
-                alt="Preview"
-                w={200}
-                my={5}
-                radius="md"
-              />
-            )}
-            {preview && newImg ? (
+
+            {postData?.img && !preview && (
               <>
-                <Image src={preview} alt="Preview" w={200} my={5} radius="md" />
+                <Image
+                  src={postData?.img}
+                  alt="img"
+                  w={200}
+                  my={5}
+                  radius="md"
+                />
                 <Button
                   color="red"
                   mb={"xs"}
                   onClick={() => {
-                    setNewImg(null);
+                    setPostData({ ...postData, img: null });
                     setPreview(null);
                   }}
                 >
                   Delete
                 </Button>
               </>
-            ) : (
+            )}
+            {preview && (
+              <>
+                <Image src={preview} alt="img" w={200} my={5} radius="md" />
+                <Button
+                  color="red"
+                  mb={"xs"}
+                  onClick={() => {
+                    setPostData({ ...postData, img: null });
+                    setPreview(null);
+                  }}
+                >
+                  Delete
+                </Button>
+              </>
+            )}
+            {/* {preview && !postData?.img && (
+              <>
+                <Image src={preview} alt="Preview" w={200} my={5} radius="md" />
+                <Button
+                  color="red"
+                  mb={"xs"}
+                  onClick={() => {
+                    setPostData({ ...postData, img: null });
+                    setPreview(null);
+                  }}
+                >
+                  Delete
+                </Button>
+              </>
+            )} */}
+            {!postData?.img && !preview && (
               <FileButton
                 my={8}
                 accept="image/png,image/jpeg"
                 onChange={(selectedFile) => {
-                  setNewImg(selectedFile);
+                  setPostData({ ...postData, img: selectedFile });
 
                   if (selectedFile) {
                     setPreview(URL.createObjectURL(selectedFile));
@@ -179,11 +206,14 @@ const EditPostPage = () => {
                 )}
               </FileButton>
             )}
+
             <br />
             <Button onClick={handleUpdate} loading={isPending}>
               Update
             </Button>
-            {/* <Button ml={3}>Save as Draft</Button> */}
+            <Button color="black" ml={3} onClick={() => navigate(-1)}>
+              Back
+            </Button>
           </Box>
         </>
       )}
