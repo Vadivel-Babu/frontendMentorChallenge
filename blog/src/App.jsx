@@ -13,7 +13,7 @@ import EditPostPage from "./pages/EditPostPage";
 function App() {
   return (
     <>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
       <Navbar />
       <Routes>
         <Route

@@ -18,6 +18,8 @@ import CommentCard from "../components/CommentCard";
 import { useContext, useState } from "react";
 import { useGetPostById } from "../hooks/usePosts";
 import { AuthContext } from "../context/AuthContext";
+import { useCreateComment } from "../hooks/useComments";
+import toast from "react-hot-toast";
 
 const items = [
   { title: "Home", href: "/" },
@@ -31,10 +33,34 @@ const items = [
 const PostPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
+  const [comment, setComment] = useState("");
+  const { mutate } = useCreateComment();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetPostById(id);
-  console.log(data);
+
+  function handleComment() {
+    if (!comment.trim().length) {
+      toast.error("filed is empty");
+      return;
+    }
+    const toastId = toast.loading("Commenting...");
+    const data = { content: comment, userId: user.id, postId: id };
+    mutate(data, {
+      onSuccess: (res) => {
+        toast.success(res.message || "commented successfully", {
+          id: toastId,
+        });
+        setComment("");
+        setIsOpen(false);
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "cannot commented", {
+          id: toastId,
+        });
+      },
+    });
+  }
 
   return (
     <div className="container p-2">
@@ -90,15 +116,24 @@ const PostPage = () => {
             </div>
             {isOpen && (
               <div className="flex space-x-1 mb-1">
-                <Input placeholder="type comment" />
-                <Button color="red" onClick={() => setIsOpen(false)}>
+                <Input
+                  placeholder="type comment"
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <Button
+                  color="red"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setComment("");
+                  }}
+                >
                   cancel
                 </Button>
-                <Button>submit</Button>
+                <Button onClick={handleComment}>submit</Button>
               </div>
             )}
             {data?.comments?.length > 0 ? (
-              <div className="flex-col space-y-1 max-h-25 overflow-y-scroll scrollbar-thin py-1">
+              <div className="flex-col space-y-1 max-h-40 overflow-y-scroll scrollbar-thin py-1">
                 {data?.comments?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} user={user} />
                 ))}{" "}

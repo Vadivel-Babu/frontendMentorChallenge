@@ -13,8 +13,12 @@ export const getPostById = async (id) => {
 };
 
 // CREATE post
-export const createPost = async (data) => {
-  const res = await api.post("/posts", data);
+export const createPost = async (formData) => {
+  const res = await api.post("/posts", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 };
 

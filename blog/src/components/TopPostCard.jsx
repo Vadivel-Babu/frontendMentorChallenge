@@ -13,12 +13,12 @@ const TopPostCard = () => {
         mah={"max-content"}
       >
         <Title size={25}>Most liked post</Title>
-        <p className="my-1">
+        <div className="my-1">
           category:
           <Badge color="cyan" ml={3}>
             java
           </Badge>{" "}
-        </p>
+        </div>
         <p>Author: Guest1</p>
         <NavLink
           to={"/post"}

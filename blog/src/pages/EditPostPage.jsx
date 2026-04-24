@@ -7,6 +7,7 @@ import {
   Textarea,
   FileButton,
   Loader,
+  Image,
   Box,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
@@ -27,6 +28,8 @@ const items = [
 
 const EditPostPage = () => {
   const navigate = useNavigate();
+  const [preview, setPreview] = useState(null);
+  const [newImg, setNewImg] = useState(null);
   const [postData, setPostData] = useState({
     title: "",
     img: null,
@@ -47,6 +50,12 @@ const EditPostPage = () => {
     });
   }, [isLoading]);
 
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+
   function handleUpdate() {
     if (!postData.title || !postData.content || !postData.category) {
       toast.error("All fields required");
@@ -60,7 +69,9 @@ const EditPostPage = () => {
     formData.append("category", postData.category);
     formData.append("userId", user.id);
 
-    if (postData.img) {
+    if (newImg) {
+      formData.append("img", newImg);
+    } else if (postData.img) {
       formData.append("img", postData.img);
     }
 
@@ -106,12 +117,11 @@ const EditPostPage = () => {
             />
             <Select
               my={"sm"}
-              label="Your favorite library"
+              label="Your favorite language"
               placeholder="Pick value"
               name="category"
               value={postData.category}
               onChange={(e) => setPostData({ ...postData, category: e })}
-              //onChange={(e) => setValue(e)}
               data={["javascript", "php", "python"]}
             />
             <Textarea
@@ -127,14 +137,48 @@ const EditPostPage = () => {
               minRows={3}
               maxRows={6}
             />
-
-            <FileButton my={8} accept="image/png,image/jpeg">
-              {(props) => (
-                <Button color="black" {...props}>
-                  Upload image
+            {postData?.img && !preview && !newImg && (
+              <Image
+                src={postData?.img}
+                alt="Preview"
+                w={200}
+                my={5}
+                radius="md"
+              />
+            )}
+            {preview && newImg ? (
+              <>
+                <Image src={preview} alt="Preview" w={200} my={5} radius="md" />
+                <Button
+                  color="red"
+                  mb={"xs"}
+                  onClick={() => {
+                    setNewImg(null);
+                    setPreview(null);
+                  }}
+                >
+                  Delete
                 </Button>
-              )}
-            </FileButton>
+              </>
+            ) : (
+              <FileButton
+                my={8}
+                accept="image/png,image/jpeg"
+                onChange={(selectedFile) => {
+                  setNewImg(selectedFile);
+
+                  if (selectedFile) {
+                    setPreview(URL.createObjectURL(selectedFile));
+                  }
+                }}
+              >
+                {(props) => (
+                  <Button color="black" {...props}>
+                    Upload image
+                  </Button>
+                )}
+              </FileButton>
+            )}
             <br />
             <Button onClick={handleUpdate} loading={isPending}>
               Update

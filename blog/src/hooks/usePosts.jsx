@@ -30,7 +30,7 @@ export const useCreatePost = () => {
 
   return useMutation({
     mutationFn: createPost,
-    onSuccess: () => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries(["posts"]);
     },
   });

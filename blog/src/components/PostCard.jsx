@@ -17,18 +17,38 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDeletePost } from "../hooks/usePosts";
 import toast from "react-hot-toast";
+import { useCreateComment } from "../hooks/useComments";
 
 const PostCard = ({ post, user }) => {
   const navigate = useNavigate();
   const [postId, setPostId] = useState(0);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const { mutate } = useDeletePost();
+  const { mutate: mutateComment } = useCreateComment();
   const [comment, setComment] = useState("");
 
   function handleCloseCommentBox() {
     setIsCommentOpen(false);
     setPostId(0);
     setComment("");
+  }
+
+  function handleComment(id) {
+    const toastId = toast.loading("Commenting...");
+    const data = { content: comment, userId: user.id, postId: id };
+    mutateComment(data, {
+      onSuccess: (res) => {
+        toast.success(res.message || "commented successfully", {
+          id: toastId,
+        });
+        handleCloseCommentBox();
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "cannot commented", {
+          id: toastId,
+        });
+      },
+    });
   }
 
   const handleDelete = (id) => {
@@ -83,7 +103,7 @@ const PostCard = ({ post, user }) => {
         <Image
           h={200}
           radius="md"
-          src={post.img}
+          src={post?.img}
           fallbackSrc="https://placehold.co/600x400?text=Placeholder"
         />
         <h1 className="font-bold my-0.5 text-2xl">{post?.title}</h1>
@@ -98,7 +118,9 @@ const PostCard = ({ post, user }) => {
             placeholder="your comment..."
             my={3}
           />
-          <Button color="black">submit</Button>
+          <Button onClick={() => handleComment(post.id)} color="black">
+            submit
+          </Button>
           <Button ml={5} color="red" onClick={handleCloseCommentBox}>
             close
           </Button>
