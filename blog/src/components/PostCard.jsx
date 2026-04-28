@@ -57,7 +57,7 @@ const PostCard = ({ post, user }) => {
     const toastId = toast.loading("Deleting post...");
     mutate(id, {
       onSuccess: (res) => {
-        toast.success(res.message || "Deleted successfully", {
+        toast.success(res.message || "Post Deleted successfully", {
           id: toastId,
         });
       },
@@ -109,10 +109,18 @@ const PostCard = ({ post, user }) => {
         <div
           className={`flex items-center space-x-1 ${post.userId === user.id ? "visible" : "invisible"}`}
         >
-          <ActionIcon color="red" onClick={() => handleDelete(post.id)}>
+          <ActionIcon
+            variant="transparent"
+            color="red"
+            onClick={() => handleDelete(post.id)}
+          >
             <MdOutlineDeleteOutline />
           </ActionIcon>
-          <ActionIcon color="gray" onClick={() => navigate(`/edit/${post.id}`)}>
+          <ActionIcon
+            variant="transparent"
+            color="gray"
+            onClick={() => navigate(`/edit/${post.id}`)}
+          >
             <MdOutlineModeEdit />
           </ActionIcon>
         </div>
@@ -155,7 +163,10 @@ const PostCard = ({ post, user }) => {
           variant={"transparent"}
           color={post?.is_liked === 1 ? "blue" : "black"}
         >
-          {post?.is_liked === 1 ? "liked" : "like"}
+          <Text visibleFrom="sm">
+            {" "}
+            {post?.is_liked === 1 ? "liked" : "like"}
+          </Text>
         </Button>
         <Button
           leftSection={<BiCommentDetail />}
@@ -170,7 +181,7 @@ const PostCard = ({ post, user }) => {
             }
           }}
         >
-          comment
+          <Text visibleFrom="sm">comment</Text>
         </Button>
         <CopyButton value="https://mantine.dev">
           {({ copied, copy }) => (
@@ -180,7 +191,7 @@ const PostCard = ({ post, user }) => {
               onClick={copy}
               color="black"
             >
-              {copied ? "Copied" : "share"}
+              <Text visibleFrom="sm"> {copied ? "Copied" : "share"}</Text>
             </Button>
           )}
         </CopyButton>
@@ -190,7 +201,7 @@ const PostCard = ({ post, user }) => {
           rightSection={<FaArrowRightLong />}
           variant="transparent"
         >
-          View
+          <Text visibleFrom="sm">View</Text>
         </Button>
       </div>
     </Paper>

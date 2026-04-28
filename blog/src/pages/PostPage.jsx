@@ -16,7 +16,7 @@ import { MdOutlineDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import { useContext, useState } from "react";
-import { useGetPostById } from "../hooks/usePosts";
+import { useDeletePost, useGetPostById } from "../hooks/usePosts";
 import { AuthContext } from "../context/AuthContext";
 import { useCreateComment } from "../hooks/useComments";
 import toast from "react-hot-toast";
@@ -35,6 +35,7 @@ const PostPage = () => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
   const { mutate } = useCreateComment();
+  const { mutate: deleteMutate } = useDeletePost();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetPostById(id);
@@ -62,6 +63,23 @@ const PostPage = () => {
     });
   }
 
+  const handleDelete = () => {
+    const toastId = toast.loading("Deleting post...");
+    mutate(id, {
+      onSuccess: (res) => {
+        toast.success(res.message || "Post Deleted successfully", {
+          id: toastId,
+        });
+        navigate("/");
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "Delete failed", {
+          id: toastId,
+        });
+      },
+    });
+  };
+
   return (
     <div className="container p-2">
       <Breadcrumbs>{items}</Breadcrumbs>
@@ -81,12 +99,17 @@ const PostPage = () => {
             <div
               className={`flex items-center space-x-1 ${data?.post?.userId === user.id ? "visible" : "invisible"}`}
             >
-              <ActionIcon color="red">
+              <ActionIcon
+                color="red"
+                variant="transparent"
+                onClick={handleDelete}
+              >
                 <MdOutlineDeleteOutline />
               </ActionIcon>
               <ActionIcon
                 onClick={() => navigate(`/edit/${data?.post?.id}`)}
                 color="gray"
+                variant="transparent"
               >
                 <MdOutlineModeEdit />
               </ActionIcon>
