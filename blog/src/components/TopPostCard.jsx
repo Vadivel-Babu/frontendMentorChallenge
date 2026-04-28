@@ -21,7 +21,7 @@ const TopPostCard = () => {
         </div>
         <p>Author: Guest1</p>
         <NavLink
-          to={"/post"}
+          to={"/"}
           className={"text-blue-600 underline hover:text-blue-200 my-1"}
         >
           View Post

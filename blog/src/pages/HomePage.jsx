@@ -14,14 +14,14 @@ const HomePage = () => {
   console.log(data);
 
   return (
-    <div className="block p-4 md:flex container justify-around md:pt-1 h-full w-full">
+    <div className="">
       <FilterBox />
       {isLoading ? (
         <div className="flex items-center justify-center w-full min-h-125">
           <Loader color="indigo" size="xl" mt={50} />
         </div>
       ) : (
-        <>
+        <div className="block p-4 md:flex container justify-around md:pt-1 h-full w-full">
           <ProfileCard />
           <div className="flex-col space-y-1 h-[85dvh] overflow-y-scroll scrollbar-thin py-1">
             {data?.map((post) => (
@@ -29,7 +29,7 @@ const HomePage = () => {
             ))}
           </div>
           <TopPostCard />
-        </>
+        </div>
       )}
     </div>
   );

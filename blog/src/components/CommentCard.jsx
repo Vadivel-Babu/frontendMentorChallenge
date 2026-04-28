@@ -46,6 +46,22 @@ const CommentCard = ({ comment, user }) => {
       },
     );
   }
+  function handleDeleteComment(id) {
+    const toastId = toast.loading("Commenting...");
+    deleteMutate(id, {
+      onSuccess: (res) => {
+        toast.success(res.message || "commented successfully", {
+          id: toastId,
+        });
+        setNewComment(null);
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "cannot commented", {
+          id: toastId,
+        });
+      },
+    });
+  }
   return (
     <Paper key={comment?.id} withBorder radius="md" component="div" p={10}>
       <div className="flex justify-between">
@@ -60,7 +76,10 @@ const CommentCard = ({ comment, user }) => {
         >
           {newComment === null ? (
             <>
-              <ActionIcon color="red">
+              <ActionIcon
+                color="red"
+                onClick={() => handleDeleteComment(comment.id)}
+              >
                 <MdOutlineDeleteOutline />
               </ActionIcon>
               <ActionIcon

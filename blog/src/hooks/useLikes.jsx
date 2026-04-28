@@ -1,8 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
-import { loginUser } from "../api/userApi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { likePost } from "../apis/likeApi";
 
-export const useLogin = () => {
+export const useLikePost = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: loginUser,
+    mutationFn: likePost,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["posts"]);
+    },
   });
 };

@@ -18,10 +18,12 @@ import { useState } from "react";
 import { useDeletePost } from "../hooks/usePosts";
 import toast from "react-hot-toast";
 import { useCreateComment } from "../hooks/useComments";
+import { useLikePost } from "../hooks/useLikes";
 
 const PostCard = ({ post, user }) => {
   const navigate = useNavigate();
   const [postId, setPostId] = useState(0);
+  const { mutate: likeMutate } = useLikePost();
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const { mutate } = useDeletePost();
   const { mutate: mutateComment } = useCreateComment();
@@ -61,6 +63,22 @@ const PostCard = ({ post, user }) => {
       },
       onError: (err) => {
         toast.error(err.response?.data?.message || "Delete failed", {
+          id: toastId,
+        });
+      },
+    });
+  };
+
+  const handleLike = (data) => {
+    const toastId = toast.loading("liking post...");
+    likeMutate(data, {
+      onSuccess: (res) => {
+        toast.success(res.message || "post liked successfully", {
+          id: toastId,
+        });
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "can't be liked", {
           id: toastId,
         });
       },
@@ -132,11 +150,12 @@ const PostCard = ({ post, user }) => {
       </div>
       <div className="flex justify-evenly border-t my-3 pt-3">
         <Button
+          onClick={() => handleLike({ postId: post.id, userId: user.id })}
           leftSection={<BiSolidLike />}
-          variant={post?.is_Liked ? "filled" : "transparent"}
-          color={post?.is_Liked ? "blue" : "black"}
+          variant={"transparent"}
+          color={post?.is_liked === 1 ? "blue" : "black"}
         >
-          {!post?.is_Liked ? "like" : "liked"}
+          {post?.is_liked === 1 ? "liked" : "like"}
         </Button>
         <Button
           leftSection={<BiCommentDetail />}
