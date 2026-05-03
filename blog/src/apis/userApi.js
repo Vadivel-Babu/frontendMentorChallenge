@@ -9,3 +9,8 @@ export const signinUser = async (data) => {
   const res = await api.post("/register", data);
   return res.data;
 };
+
+export const updateUser = async (data) => {
+  const res = await api.post(`/user/${data.id}`, data);
+  return res.data;
+};
