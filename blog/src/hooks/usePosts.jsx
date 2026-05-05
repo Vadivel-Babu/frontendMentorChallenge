@@ -8,10 +8,10 @@ import {
 } from "../apis/postApi";
 
 // GET posts
-export const useGetPosts = () => {
+export const useGetPosts = (appliedFilters) => {
   return useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
+    queryKey: ["posts", appliedFilters],
+    queryFn: () => getPosts(appliedFilters),
   });
 };
 

@@ -1,8 +1,13 @@
 import api from "./axios";
 
 // GET posts
-export const getPosts = async () => {
-  const res = await api.get("/posts");
+export const getPosts = async (appliedFilters) => {
+  const res = await api.get("/posts", {
+    params: {
+      search: appliedFilters.search,
+      category: appliedFilters.category,
+    },
+  });
   return res.data;
 };
 

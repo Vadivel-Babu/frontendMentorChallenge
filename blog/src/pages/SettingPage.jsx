@@ -5,6 +5,8 @@ import {
   Input,
   Button,
   ActionIcon,
+  FileButton,
+  Image,
 } from "@mantine/core";
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -25,6 +27,7 @@ const items = [
 
 const SettingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [preview, setPreview] = useState(null);
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
   const [isVisibleNewPwd, setIsVisibleNewPwd] = useState(false);
   const [data, setData] = useState({
@@ -36,8 +39,10 @@ const SettingPage = () => {
     newPassword: "",
     confirmPassword: "",
   });
-  const { mutate } = useUserUpdate();
-  const { user } = useContext(AuthContext);
+
+  const { mutate, isPending } = useUserUpdate();
+  const { user, logout } = useContext(AuthContext);
+
   useEffect(() => {
     setData({
       ...data,
@@ -47,11 +52,43 @@ const SettingPage = () => {
       img: user?.img,
     });
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+
   function handleUpdateUser() {
-    if (!data.name) {
+    if (!data.name.trim()) {
       toast.error("All fields required");
       return;
     }
+    if (!data.password.trim() && data.newPassword.trim()) {
+      toast.error("password required");
+      return;
+    }
+    if (data.password.trim() && !data.newPassword.trim()) {
+      toast.error("new password required");
+      return;
+    }
+    if (
+      data.password.trim() &&
+      data.newPassword.trim() &&
+      !data.confirmPassword.trim()
+    ) {
+      toast.error("confirm password required");
+      return;
+    }
+    if (
+      data.newPassword.trim() &&
+      data.confirmPassword.trim() &&
+      data.newPassword !== data.confirmPassword
+    ) {
+      toast.error("new password and confirm password not matched");
+      return;
+    }
+    console.log(data);
 
     const formData = new FormData();
 
@@ -61,9 +98,23 @@ const SettingPage = () => {
     formData.append("password", data.password);
     formData.append("newpassword", data.newPassword);
 
-    // if (postData.img) {
-    //   formData.append("img", postData.img);
-    // }
+    if (data.img) {
+      formData.append("img", postData.img);
+    }
+    return;
+    mutate(
+      { id: data.id, formData },
+      {
+        onSuccess: (res) => {
+          console.log(res);
+
+          toast.success(res.message || "Updated successfully");
+        },
+        onError: (err) => {
+          toast.error(err.response?.data?.message || "Update failed");
+        },
+      },
+    );
   }
   return (
     <div className="container p-2">
@@ -104,10 +155,10 @@ const SettingPage = () => {
           my={"sm"}
           placeholder="new password"
           className="caret-blue-500"
-          type={isVisible ? "text" : "password"}
+          type={isVisiblePwd ? "text" : "password"}
           name="newPassword"
           rightSectionPointerEvents="all"
-          value={data.password}
+          value={data.newPassword}
           rightSection={
             <ActionIcon
               onClick={() => setIsVisiblePwd(!isVisiblePwd)}
@@ -125,10 +176,10 @@ const SettingPage = () => {
           my={"sm"}
           placeholder="confirm password"
           className="caret-blue-500"
-          type={isVisible ? "text" : "password"}
+          type={isVisibleNewPwd ? "text" : "password"}
           name="newpassword"
           rightSectionPointerEvents="all"
-          value={data.password}
+          value={data.confirmPassword}
           rightSection={
             <ActionIcon
               onClick={() => setIsVisibleNewPwd(!isVisibleNewPwd)}
@@ -142,7 +193,48 @@ const SettingPage = () => {
             setData({ ...data, [e.target.name]: e.target.value })
           }
         />
-        <Button color="gray" mt={8}>
+        {preview && (
+          <>
+            <Image src={preview} alt="img" w={200} my={5} radius="md" />
+            <Button
+              color="red"
+              mb={"xs"}
+              onClick={() => {
+                setData({ ...data, img: null });
+                setPreview(null);
+              }}
+            >
+              Delete
+            </Button>
+          </>
+        )}
+        {!data?.img && !preview && (
+          <FileButton
+            my={8}
+            accept="image/png,image/jpeg"
+            onChange={(selectedFile) => {
+              setData({ ...data, img: selectedFile });
+
+              if (selectedFile) {
+                setPreview(URL.createObjectURL(selectedFile));
+              }
+            }}
+          >
+            {(props) => (
+              <Button color="black" {...props}>
+                Upload image
+              </Button>
+            )}
+          </FileButton>
+        )}
+
+        <br />
+        <Button
+          loading={isPending}
+          onClick={handleUpdateUser}
+          color="gray"
+          mt={8}
+        >
           update profile
         </Button>
       </Box>
