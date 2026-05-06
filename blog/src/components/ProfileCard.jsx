@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const ProfileCard = () => {
   const { user } = useContext(AuthContext);
+
   return (
     <div className="hidden md:block">
       <Paper

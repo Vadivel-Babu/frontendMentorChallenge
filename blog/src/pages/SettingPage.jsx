@@ -61,34 +61,33 @@ const SettingPage = () => {
 
   function handleUpdateUser() {
     if (!data.name.trim()) {
-      toast.error("All fields required");
+      toast.error("All fields are required");
       return;
     }
-    if (!data.password.trim() && data.newPassword.trim()) {
-      toast.error("password required");
-      return;
-    }
-    if (data.password.trim() && !data.newPassword.trim()) {
-      toast.error("new password required");
-      return;
-    }
-    if (
-      data.password.trim() &&
-      data.newPassword.trim() &&
-      !data.confirmPassword.trim()
-    ) {
-      toast.error("confirm password required");
-      return;
-    }
-    if (
-      data.newPassword.trim() &&
-      data.confirmPassword.trim() &&
-      data.newPassword !== data.confirmPassword
-    ) {
-      toast.error("new password and confirm password not matched");
-      return;
-    }
-    console.log(data);
+    // if (!data.password.trim() && data.newPassword.trim()) {
+    //   toast.error("password required");
+    //   return;
+    // }
+    // if (data.password.trim() && !data.newPassword.trim()) {
+    //   toast.error("new password required");
+    //   return;
+    // }
+    // if (
+    //   data.password.trim() &&
+    //   data.newPassword.trim() &&
+    //   !data.confirmPassword.trim()
+    // ) {
+    //   toast.error("confirm password required");
+    //   return;
+    // }
+    // if (
+    //   data.newPassword.trim() &&
+    //   data.confirmPassword.trim() &&
+    //   data.newPassword !== data.confirmPassword
+    // ) {
+    //   toast.error("new password and confirm password not matched");
+    //   return;
+    // }
 
     const formData = new FormData();
 
@@ -96,19 +95,18 @@ const SettingPage = () => {
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    formData.append("newpassword", data.newPassword);
+    //formData.append("newpassword", data.newPassword);
 
     if (data.img) {
-      formData.append("img", postData.img);
+      formData.append("img", data.img);
     }
-    return;
+    //return;
     mutate(
       { id: data.id, formData },
       {
         onSuccess: (res) => {
-          console.log(res);
-
           toast.success(res.message || "Updated successfully");
+          logout();
         },
         onError: (err) => {
           toast.error(err.response?.data?.message || "Update failed");
@@ -130,7 +128,7 @@ const SettingPage = () => {
           }
         />
         <Input my={8} placeholder="email" value={data?.email} readOnly />
-        <Input
+        {/* <Input
           my={"sm"}
           placeholder="password"
           className="caret-blue-500"
@@ -150,8 +148,8 @@ const SettingPage = () => {
           onChange={(e) =>
             setData({ ...data, [e.target.name]: e.target.value })
           }
-        />
-        <Input
+        /> */}
+        {/* <Input
           my={"sm"}
           placeholder="new password"
           className="caret-blue-500"
@@ -171,13 +169,13 @@ const SettingPage = () => {
           onChange={(e) =>
             setData({ ...data, [e.target.name]: e.target.value })
           }
-        />
-        <Input
+        /> */}
+        {/* <Input
           my={"sm"}
           placeholder="confirm password"
           className="caret-blue-500"
           type={isVisibleNewPwd ? "text" : "password"}
-          name="newpassword"
+          name="confirmPassword"
           rightSectionPointerEvents="all"
           value={data.confirmPassword}
           rightSection={
@@ -192,7 +190,7 @@ const SettingPage = () => {
           onChange={(e) =>
             setData({ ...data, [e.target.name]: e.target.value })
           }
-        />
+        /> */}
         {preview && (
           <>
             <Image src={preview} alt="img" w={200} my={5} radius="md" />

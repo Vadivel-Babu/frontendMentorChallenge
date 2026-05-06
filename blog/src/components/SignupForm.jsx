@@ -18,15 +18,18 @@ const SignupForm = () => {
       toast.error("all fields are required");
       return;
     }
-    const res = await mutate(data);
+    mutate(data, {
+      onSuccess: (res) => {
+        toast.success(res.message || "Successfully register");
 
-    if (isError) {
-      toast.error(error.response.data.message || "something went wrong");
-    }
-    if (isSuccess) {
-      toast.success("Successfully register");
-      setData({ name: "", email: "", password: "" });
-    }
+        setData({ name: "", email: "", password: "" });
+        navigate("/");
+      },
+
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "Something went wrong");
+      },
+    });
   }
   return (
     <div>
