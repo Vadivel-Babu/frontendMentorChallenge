@@ -23,7 +23,7 @@ const SignupForm = () => {
         toast.success(res.message || "Successfully register");
 
         setData({ name: "", email: "", password: "" });
-        navigate("/");
+        navigate("/login");
       },
 
       onError: (err) => {

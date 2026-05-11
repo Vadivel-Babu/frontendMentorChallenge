@@ -183,7 +183,7 @@ const PostCard = ({ post, user }) => {
         >
           <Text visibleFrom="sm">comment</Text>
         </Button>
-        <CopyButton value="https://mantine.dev">
+        {/* <CopyButton value="https://mantine.dev">
           {({ copied, copy }) => (
             <Button
               leftSection={<PiShareNetworkFill />}
@@ -194,7 +194,7 @@ const PostCard = ({ post, user }) => {
               <Text visibleFrom="sm"> {copied ? "Copied" : "share"}</Text>
             </Button>
           )}
-        </CopyButton>
+        </CopyButton> */}
         <Button
           onClick={() => navigate(`/post/${post.id}`)}
           color="black"
