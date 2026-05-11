@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://blog.test",
+  baseURL: "https://blog.vadivelbabu.in",
 });
 api.defaults.headers.post["Content-Type"] = "application/json";
 api.interceptors.request.use((config) => {
