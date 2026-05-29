@@ -19,7 +19,6 @@ const Sidebar = () => {
   const [theme, setTheme] = useState("light");
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const pathname = location.pathname.split("/")[1];
-  console.log(pathname);
 
   return (
     <div
@@ -103,7 +102,7 @@ const Sidebar = () => {
           <MoveHorizontal />
           {!isSideBarOpen && "Minimize"}
         </Button>
-        <Button className="m-auto bg-primary-blue">
+        <Button className="m-auto" variant="destructive">
           <LogOut />
           <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
             Logout
