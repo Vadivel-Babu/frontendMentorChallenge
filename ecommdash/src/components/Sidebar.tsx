@@ -11,6 +11,7 @@ import {
   Truck,
   MoveHorizontal,
   LogOut,
+  Menu,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -22,19 +23,25 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-whiteblue text-lightblue capitalize md:text-lg transition-all duration-100 ease-in-out  ${!isSideBarOpen ? "md:w-[15%]" : "md:w-[5%]"}  md:h-screen flex md:flex-col md:justify-between md:py-3 `}
+      className={`bg-whiteblue text-lightblue capitalize md:text-lg transition-all duration-100 ease-in-out  ${!isSideBarOpen ? "md:w-[15%]" : "md:w-[5%]"}  md:h-screen flex md:flex-col justify-between md:py-3 `}
     >
-      <div className=" md:flex md:flex-col">
-        <h1 className="md:text-center md:text-3xl text-primary-blue font-bold md:mb-4">
+      <div className="flex flex-row justify-center items-center  p-3 md:p-0 md:flex-col">
+        <h1 className="hidden md:block md:text-center md:text-xl lg:text-3xl text-primary-blue font-bold md:mb-4">
           {!isSideBarOpen ? "KaRt" : "K"}
         </h1>
-        <div className="flex md:flex-col md:gap-3">
+        <h1 className="block md:hidden text-lg  sm:text-xl text-primary-blue font-bold">
+          Kart
+        </h1>
+        <Button className="block md:hidden ml-2">
+          <Menu />
+        </Button>
+        <div className="md:flex-col  w-full md:gap-3 hidden md:flex md:text-base lg:text-lg">
           <NavLink
             className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178] px-3`}
             to={"/"}
           >
-            <LayoutDashboard />
-            <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
+            <LayoutDashboard className="hidden lg:inline" />
+            <span className={`${!isSideBarOpen ? "inline" : "hidden"} `}>
               dashboard
             </span>
           </NavLink>
@@ -43,7 +50,7 @@ const Sidebar = () => {
             className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "products" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/products"}
           >
-            <ShoppingBasket />
+            <ShoppingBasket className="hidden lg:inline" />
             <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
               Products
             </span>
@@ -52,7 +59,7 @@ const Sidebar = () => {
             className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "create-product" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/create-product"}
           >
-            <Plus />
+            <Plus className="hidden lg:inline" />
             <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
               Add Product
             </span>
@@ -61,23 +68,23 @@ const Sidebar = () => {
             className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "orders" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/orders"}
           >
-            <Truck />
+            <Truck className="hidden lg:inline" />
             <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
               Orders
             </span>
           </NavLink>
           <NavLink
-            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "setting" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
+            className={`flex gap-2 items-center  ${isSideBarOpen && "justify-center"} ${pathname === "setting" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/setting"}
           >
-            <Settings />
-            <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
+            <Settings className="hidden lg:inline" />
+            <span className={`${!isSideBarOpen ? "inline" : "hidden"} `}>
               Setting
             </span>
           </NavLink>
         </div>
       </div>
-      <div className="px-3 md:flex md:flex-col justify-center md:gap-y-3">
+      <div className="p-3 md:px-3 flex flex-row-reverse gap-1 md:flex-col justify-center md:gap-y-3">
         <Avatar size="lg" className="m-auto">
           <AvatarImage src="https://github.com/shadcn.pn" />
           <AvatarFallback className="bg-primary-blue text-md text-white">
@@ -91,20 +98,20 @@ const Sidebar = () => {
               return newTheme;
             })
           }
-          className="m-auto bg-primary-blue"
+          className=" m-auto bg-primary-blue"
         >
           {theme === "light" ? <Moon /> : <Sun />}
         </Button>
         <Button
           onClick={() => setIsSideBarOpen((is) => !is)}
-          className="m-auto bg-primary-blue"
+          className="hidden lg:flex m-auto bg-primary-blue "
         >
           <MoveHorizontal />
           {!isSideBarOpen && "Minimize"}
         </Button>
         <Button className="m-auto" variant="destructive">
-          <LogOut />
-          <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
+          <LogOut className="hidden lg:inline" />
+          <span className={`${!isSideBarOpen ? "md:inline" : "md:hidden"}`}>
             Logout
           </span>
         </Button>
