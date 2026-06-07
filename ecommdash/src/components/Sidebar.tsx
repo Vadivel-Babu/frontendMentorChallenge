@@ -13,11 +13,12 @@ import {
   LogOut,
   Menu,
 } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "@/context/AppContext";
 
 const Sidebar = () => {
   const location = useLocation();
-  const [theme, setTheme] = useState("light");
+  const { theme, toggleTheme } = useContext(AppContext);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const pathname = location.pathname.split("/")[1];
 
@@ -92,12 +93,7 @@ const Sidebar = () => {
           </AvatarFallback>
         </Avatar>
         <Button
-          onClick={() =>
-            setTheme((theme) => {
-              const newTheme = theme === "light" ? "dark" : "light";
-              return newTheme;
-            })
-          }
+          onClick={() => toggleTheme()}
           className=" m-auto bg-primary-blue"
         >
           {theme === "light" ? <Moon /> : <Sun />}
@@ -109,7 +105,7 @@ const Sidebar = () => {
           <MoveHorizontal />
           {!isSideBarOpen && "Minimize"}
         </Button>
-        <Button className="m-auto" variant="destructive">
+        <Button className="m-auto text-white bg-red-500">
           <LogOut className="hidden lg:inline" />
           <span className={`${!isSideBarOpen ? "md:inline" : "md:hidden"}`}>
             Logout
