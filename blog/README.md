@@ -1,16 +1,53 @@
-# React + Vite
+# BlogSphere - React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-featured **blog application** built with React. This is the frontend part of a fullstack blog platform that connects to a PHP REST API backend.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Authentication
 
-## React Compiler
+- User Registration & Login
+- Protected Routes
+- Logout functionality
+- Remember me option
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Blog Management (CRUD)
 
-## Expanding the ESLint configuration
+- Create new blog posts with rich text editor
+- Read posts with beautiful UI
+- Update / Edit your own posts
+- Delete posts
+- Image upload support (featured image)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### User Profile
+
+- Profile viewing and editing
+- Update avatar
+- Personal information management
+
+### Social Features
+
+- Like posts
+- Comment on posts
+- View all comments
+
+### Discovery
+
+- Search posts by title or content
+- Filter posts by category, date, or popularity
+- Responsive and clean feed
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18+
+- **Styling**: Tailwind CSS + Mantine UI
+- **HTTP Client**: Axios
+- **State Management**: Context API + TanStack Query (React Query)
+- **Routing**: React Router DOM
+
+## Auth details
+
+- **mailId**:user@mail.com
+- **password**: user
+
+[BackendApi] (https://github.com/Vadivel-Babu/blogphp-restApi)
