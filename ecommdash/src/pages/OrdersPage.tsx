@@ -1,4 +1,5 @@
 import Topbar from "@/components/Topbar";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -58,7 +59,7 @@ const OrdersPage = () => {
   return (
     <div>
       <Topbar />
-      <Table>
+      <Table className="max-w-250 m-auto">
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -72,7 +73,14 @@ const OrdersPage = () => {
           {invoices.map((invoice) => (
             <TableRow key={invoice.invoice}>
               <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
+              <TableCell>
+                {" "}
+                <Badge
+                  className={`${invoice.paymentStatus == "Paid" ? "bg-green-500" : invoice.paymentStatus == "Pending" ? "bg-yellow-500" : "bg-red-500"}`}
+                >
+                  {invoice.paymentStatus}
+                </Badge>{" "}
+              </TableCell>
               <TableCell>{invoice.paymentMethod}</TableCell>
               <TableCell className="text-right">
                 {invoice.totalAmount}
