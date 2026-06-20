@@ -24,7 +24,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-whiteblue text-lightblue capitalize md:text-lg transition-all duration-100 ease-in-out  ${!isSideBarOpen ? "md:w-[15%]" : "md:w-[5%]"}  md:h-screen flex md:flex-col justify-between md:py-3 `}
+      className={`bg-whiteblue sticky top-0 text-lightblue capitalize md:text-lg transition-all duration-100 ease-in-out  ${!isSideBarOpen ? "md:w-[15%]" : "md:w-[5%]"}  md:h-screen flex md:flex-col justify-between md:py-3 `}
     >
       <div className="flex flex-row justify-center items-center  p-3 md:p-0 md:flex-col">
         <h1 className="hidden md:block md:text-center md:text-xl lg:text-3xl text-primary-blue font-bold md:mb-4">
