@@ -3,10 +3,19 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import type { User } from "@/types/user";
 
-const Login = () => {
+const Signup = () => {
   const [credentials, setCreadentials] = useState<User | null>(null);
   return (
     <form>
+      <Input
+        name="name"
+        placeholder="enter your name..."
+        type="text"
+        value={credentials?.name}
+        onChange={(e) =>
+          setCreadentials({ ...credentials, [e.target.name]: e.target.value })
+        }
+      />
       <Input
         name="email"
         placeholder="enter your email..."
@@ -25,9 +34,9 @@ const Login = () => {
           setCreadentials({ ...credentials, [e.target.name]: e.target.value })
         }
       />
-      <Button className="bg-primary-blue">Login</Button>
+      <Button className="bg-primary-blue">signup</Button>
     </form>
   );
 };
 
-export default Login;
+export default Signup;
