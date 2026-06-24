@@ -7,6 +7,7 @@ import OrdersPage from "./pages/OrdersPage";
 import CreateProductPage from "./pages/CreateProductPage";
 import SettingPage from "./pages/SettingPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="p-2 md:w-full">
         <Routes>
           <Route path="/" element={<DashBoardPage />} />
+          <Route path="/login" element={<AuthPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/create-product" element={<CreateProductPage />} />

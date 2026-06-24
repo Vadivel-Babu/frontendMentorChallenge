@@ -6,7 +6,8 @@ import type { User } from "@/types/user";
 const Login = () => {
   const [credentials, setCreadentials] = useState<User | null>(null);
   return (
-    <form>
+    <form className="mx-auto max-w-100 border p-2 rounded-md space-y-2 mt-50">
+      <h1 className="text-xl font-bold">Login</h1>
       <Input
         name="email"
         placeholder="enter your email..."

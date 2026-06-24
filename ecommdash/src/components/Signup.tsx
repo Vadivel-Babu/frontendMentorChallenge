@@ -6,7 +6,8 @@ import type { User } from "@/types/user";
 const Signup = () => {
   const [credentials, setCreadentials] = useState<User | null>(null);
   return (
-    <form>
+    <form className="mx-auto max-w-100 border p-2 rounded-md space-y-2 mt-50">
+      <h1 className="text-xl font-bold">Signin</h1>
       <Input
         name="name"
         placeholder="enter your name..."
