@@ -1,6 +1,5 @@
-import Topbar from "@/components/Topbar";
-import { Badge } from "@/components/ui/badge";
 import { invoices } from "@/data/data";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -12,18 +11,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const OrdersPage = () => {
+const ProductsTable = () => {
   return (
     <div>
-      <Topbar />
       <Table className="max-w-250 m-auto">
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-25">Invoice</TableHead>
+            <TableHead className="w-25">no</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -56,4 +53,4 @@ const OrdersPage = () => {
   );
 };
 
-export default OrdersPage;
+export default ProductsTable;
