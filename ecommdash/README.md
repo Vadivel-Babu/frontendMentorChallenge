@@ -1,3 +1,3 @@
-# React dashboard
+# React E-commerce dashboard
 
 ## features
