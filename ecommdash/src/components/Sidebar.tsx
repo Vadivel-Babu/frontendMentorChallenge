@@ -4,11 +4,9 @@ import { Button } from "./ui/button";
 import {
   LayoutDashboard,
   Moon,
-  Plus,
   Settings,
   ShoppingBasket,
   Sun,
-  Truck,
   MoveHorizontal,
   LogOut,
   Menu,
@@ -49,29 +47,11 @@ const Sidebar = () => {
 
           <NavLink
             className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "products" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
-            to={"/products"}
+            to={"/blogs"}
           >
             <ShoppingBasket className="hidden lg:inline" />
             <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
-              Products
-            </span>
-          </NavLink>
-          <NavLink
-            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "create-product" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
-            to={"/create-product"}
-          >
-            <Plus className="hidden lg:inline" />
-            <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
-              Add Product
-            </span>
-          </NavLink>
-          <NavLink
-            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "orders" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
-            to={"/orders"}
-          >
-            <Truck className="hidden lg:inline" />
-            <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
-              Orders
+              Blogs
             </span>
           </NavLink>
           <NavLink

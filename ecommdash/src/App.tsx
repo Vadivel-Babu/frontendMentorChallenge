@@ -2,12 +2,10 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import DashBoardPage from "./pages/DashBoardPage";
-import ProductsPage from "./pages/ProductsPage";
-import OrdersPage from "./pages/OrdersPage";
-import CreateProductPage from "./pages/CreateProductPage";
 import SettingPage from "./pages/SettingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
+import BlogsPage from "./pages/BlogsPage";
 
 function App() {
   return (
@@ -17,9 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DashBoardPage />} />
           <Route path="/login" element={<AuthPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/create-product" element={<CreateProductPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
