@@ -1,7 +1,13 @@
-import React from "react";
+import Topbar from "@/components/Topbar";
+import UsersTable from "@/components/UsersTable";
 
 const UsersPage = () => {
-  return <div>UsersPage</div>;
+  return (
+    <div>
+      <Topbar />
+      <UsersTable />
+    </div>
+  );
 };
 
 export default UsersPage;

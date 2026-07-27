@@ -47,7 +47,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "products" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
+            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "blogs" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/blogs"}
           >
             <ShoppingBasket className="hidden lg:inline" />
@@ -56,7 +56,7 @@ const Sidebar = () => {
             </span>
           </NavLink>
           <NavLink
-            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "products" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
+            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "users" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
             to={"/users"}
           >
             <Users className="hidden lg:inline" />
