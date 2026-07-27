@@ -6,6 +6,7 @@ import SettingPage from "./pages/SettingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import BlogsPage from "./pages/BlogsPage";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<DashBoardPage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

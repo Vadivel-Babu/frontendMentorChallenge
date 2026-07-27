@@ -10,6 +10,7 @@ import {
   MoveHorizontal,
   LogOut,
   Menu,
+  Users,
 } from "lucide-react";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContext";
@@ -52,6 +53,15 @@ const Sidebar = () => {
             <ShoppingBasket className="hidden lg:inline" />
             <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
               Blogs
+            </span>
+          </NavLink>
+          <NavLink
+            className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "products" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
+            to={"/users"}
+          >
+            <Users className="hidden lg:inline" />
+            <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
+              Users
             </span>
           </NavLink>
           <NavLink
