@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import type { User } from "@/types/user";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [credentials, setCreadentials] = useState<User | null>(null);
@@ -26,7 +27,19 @@ const Login = () => {
           setCreadentials({ ...credentials, [e.target.name]: e.target.value })
         }
       />
-      <Button className="bg-primary-blue">Login</Button>
+      <div className="flex flex-col gap-1 items-baseline">
+        <p>
+          Forgetpassword?{" "}
+          <Link
+            to={"/forgetpassword"}
+            className="text-sm text-blue-400 underline"
+          >
+            link
+          </Link>
+        </p>
+
+        <Button className="bg-primary-blue">Login</Button>
+      </div>
     </form>
   );
 };

@@ -1,18 +1,38 @@
 import Login from "@/components/Login";
 import Signup from "@/components/Signup";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const pathname = location.pathname.split("/")[1];
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isTab = searchParams.get("tab");
 
   return (
     <div>
-      {true ? <Login /> : <Signup />}
-      <p className="text-center mt-2">
-        {true ? "Already have an account?" : "Don't have an account"}
-      </p>
+      {isTab === "login" ? <Login /> : <Signup />}
+      <div className="text-center mt-2">
+        {isTab !== "login" ? (
+          <p>
+            Already have an account?{" "}
+            <span
+              onClick={() => setSearchParams({ tab: "login" })}
+              className="text-blue-400 underline cursor-pointer"
+            >
+              login
+            </span>{" "}
+          </p>
+        ) : (
+          <p>
+            Don't have an account{" "}
+            <span
+              onClick={() => setSearchParams({ tab: "signup" })}
+              className="text-blue-400 underline cursor-pointer"
+            >
+              Signup
+            </span>
+          </p>
+        )}
+      </div>
     </div>
   );
 };

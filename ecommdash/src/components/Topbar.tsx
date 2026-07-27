@@ -8,7 +8,7 @@ const Topbar = () => {
   return (
     <div className="w-full md:inline-block p-6 shadow">
       <div
-        className={`max-w-100 flex justify-center gap-1 ${pathname === "" && "invisible"}`}
+        className={`max-w-100 flex justify-center gap-1 ${(pathname === "" || pathname === "setting") && "invisible"}`}
       >
         <Input name="search" placeholder="search" />
         <Button className="bg-primary-blue">search</Button>

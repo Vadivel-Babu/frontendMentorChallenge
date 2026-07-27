@@ -27,7 +27,7 @@ const Sidebar = () => {
     >
       <div className="flex flex-row justify-center items-center  p-3 md:p-0 md:flex-col">
         <h1 className="hidden md:block md:text-center md:text-xl lg:text-3xl text-primary-blue font-bold md:mb-4">
-          {!isSideBarOpen ? "KaRt" : "K"}
+          {!isSideBarOpen ? "Blog" : "B"}
         </h1>
         <h1 className="block md:hidden text-lg  sm:text-xl text-primary-blue font-bold">
           Kart
