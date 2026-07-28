@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import BlogsPage from "./pages/BlogsPage";
 import UsersPage from "./pages/UsersPage";
+import ForgetPasswordPage from "./pages/ForgetPasswordPage";
 
 function App() {
   const location = useLocation();
@@ -14,10 +15,11 @@ function App() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      {pathname !== "auth" && <Sidebar />}
+      {pathname !== "auth" && pathname !== "forgetpassword" && <Sidebar />}
       <div className="p-2 md:w-full">
         <Routes>
           <Route path="/" element={<DashBoardPage />} />
+          <Route path="/forgetpassword" element={<ForgetPasswordPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/users" element={<UsersPage />} />
