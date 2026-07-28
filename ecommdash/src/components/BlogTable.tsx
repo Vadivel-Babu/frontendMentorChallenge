@@ -13,7 +13,7 @@ import {
 const BlogTable = () => {
   return (
     <div>
-      <Table className="max-w-250 m-auto">
+      <Table className="max-w-250 m-auto border">
         <TableHeader>
           <TableRow>
             <TableHead className="w-25">no</TableHead>
