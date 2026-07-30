@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "./ui/button";
 
 const items = [
   { label: "Select a fruit", value: null },
@@ -64,6 +65,7 @@ const Filter = () => {
           </div>
         </RadioGroup>
       </div>
+      <Button>filter</Button>
     </div>
   );
 };
