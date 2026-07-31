@@ -1,6 +1,6 @@
 import { PieChart, Pie, Sector, Tooltip } from "recharts";
 
-const RenderPieSector = (props) => {
+const RenderPieSector = (props: any) => {
   // Extract custom data properties alongside standard SVG sector props
   const { fill, gender, ...restProps } = props;
 

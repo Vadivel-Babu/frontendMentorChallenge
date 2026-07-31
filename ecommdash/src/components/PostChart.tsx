@@ -58,7 +58,7 @@ const PostChart = () => {
     <BarChart
       style={{
         width: "100%",
-        maxWidth: "500px",
+        maxWidth: "700px",
         maxHeight: "40vh",
         aspectRatio: 1.618,
       }}
