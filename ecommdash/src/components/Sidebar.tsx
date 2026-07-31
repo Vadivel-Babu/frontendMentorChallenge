@@ -76,7 +76,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="p-3 md:px-3 flex flex-row-reverse gap-1 md:flex-col justify-center md:gap-y-3">
-        <Avatar size="lg" className="m-auto">
+        <Avatar size="lg" className="hidden">
           <AvatarImage src="https://github.com/shadcn.pn" />
           <AvatarFallback className="bg-primary-blue text-md text-white">
             u
@@ -84,7 +84,7 @@ const Sidebar = () => {
         </Avatar>
         <Button
           onClick={() => toggleTheme()}
-          className=" m-auto bg-primary-blue"
+          className=" m-auto bg-primary-blue md:hidden"
         >
           {theme === "light" ? <Moon /> : <Sun />}
         </Button>
