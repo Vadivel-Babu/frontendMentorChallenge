@@ -11,37 +11,33 @@ import {
 
 const UsersTable = () => {
   return (
-    <div>
-      <Table className="max-w-250 m-auto">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-25">no</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+    <Table className="max-w-250 m-auto">
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-25">no</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Action</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {invoices.map((invoice) => (
+          <TableRow key={invoice.invoice}>
+            <TableCell className="font-medium">{invoice.invoice}</TableCell>
+            <TableCell>
+              {" "}
+              <Badge
+                className={`${invoice.paymentStatus == "Paid" ? "bg-green-500" : invoice.paymentStatus == "Pending" ? "bg-yellow-500" : "bg-red-500"}`}
+              >
+                {invoice.paymentStatus}
+              </Badge>{" "}
+            </TableCell>
+            <TableCell>{invoice.paymentMethod}</TableCell>
+            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>
-                {" "}
-                <Badge
-                  className={`${invoice.paymentStatus == "Paid" ? "bg-green-500" : invoice.paymentStatus == "Pending" ? "bg-yellow-500" : "bg-red-500"}`}
-                >
-                  {invoice.paymentStatus}
-                </Badge>{" "}
-              </TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 
