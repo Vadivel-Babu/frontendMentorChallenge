@@ -16,6 +16,7 @@ function App() {
   return (
     <div className="flex flex-col md:flex-row">
       {pathname !== "auth" && pathname !== "forgetpassword" && <Sidebar />}
+
       <div className="p-2 md:w-full">
         <Routes>
           <Route path="/" element={<DashBoardPage />} />
