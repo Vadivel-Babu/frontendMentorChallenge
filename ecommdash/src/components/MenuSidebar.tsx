@@ -50,7 +50,14 @@ const MenuSidebar = ({ open, handleMenu }) => {
             Blogs
           </NavLink>
           <NavLink
-            to={"/blogs"}
+            to={"/category"}
+            className={"hover:text-lightblue"}
+            onClick={() => handleMenu(!open)}
+          >
+            Category
+          </NavLink>
+          <NavLink
+            to={"/setting"}
             className={"hover:text-lightblue"}
             onClick={() => handleMenu(!open)}
           >

@@ -8,6 +8,7 @@ import AuthPage from "./pages/AuthPage";
 import BlogsPage from "./pages/BlogsPage";
 import UsersPage from "./pages/UsersPage";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/category" element={<CategoryPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

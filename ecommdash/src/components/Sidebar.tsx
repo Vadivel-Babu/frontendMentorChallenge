@@ -10,6 +10,7 @@ import {
   MoveHorizontal,
   LogOut,
   Users,
+  GripVertical,
 } from "lucide-react";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContext";
@@ -64,6 +65,15 @@ const Sidebar = () => {
               <Users className="hidden lg:inline" />
               <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
                 Users
+              </span>
+            </NavLink>
+            <NavLink
+              className={`flex gap-2 items-center ${isSideBarOpen && "justify-center"} ${pathname === "category" && "bg-white text-[#2A4178] border-r-4 border-[#2A4178]"} hover:text-[#2A4178]  px-3`}
+              to={"/category"}
+            >
+              <GripVertical className="hidden lg:inline" />
+              <span className={`${!isSideBarOpen ? "inline" : "hidden"}`}>
+                Category
               </span>
             </NavLink>
             <NavLink
