@@ -1,6 +1,7 @@
 import Topbar from "@/components/Topbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 
 const CategoryPage = () => {
@@ -8,6 +9,10 @@ const CategoryPage = () => {
     <div>
       <Topbar />
       <h1 className="text-center text-2xl my-3 md:text-4xl">Categories</h1>
+      <div className="max-w-250 flex gap-1 mx-auto mb-3">
+        <Input className="max-w-50" placeholder="type new category" />
+        <Button className="bg-primary-blue">Add</Button>
+      </div>
       <div className="max-w-250 mx-auto border rounded-2xl p-2 min-h-50">
         <Badge className="bg-primary-blue p-2 ">
           hello
