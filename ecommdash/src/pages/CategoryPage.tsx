@@ -12,6 +12,7 @@ const CategoryPage = () => {
       <div className="max-w-250 flex gap-1 mx-auto mb-3">
         <Input className="max-w-50" placeholder="type new category" />
         <Button className="bg-primary-blue">Add</Button>
+        <Button className="bg-primary-blue">Add Bulk</Button>
       </div>
       <div className="max-w-250 mx-auto border rounded-2xl p-2 min-h-50">
         <Badge className="bg-primary-blue p-2 ">
