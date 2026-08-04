@@ -22,6 +22,7 @@ const DashBoardPage = () => {
           <StatCard />
           <StatCard />
           <StatCard />
+          <StatCard />
         </div>
         <div className="flex justify-between gap-2 my-2">
           <div className="rounded-xl w-450 p-2 border">
@@ -46,9 +47,7 @@ const DashBoardPage = () => {
             <PostChart />
           </div>
           <div className="border rounded-xl p-2">
-            <h1 className="text-md text-center my-1 md:text-xl">
-              Posts Posted
-            </h1>
+            <h1 className="text-md text-center my-1 md:text-xl">Posts Type</h1>
             <UserChart />
           </div>
         </div>

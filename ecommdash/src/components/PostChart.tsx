@@ -78,7 +78,7 @@ const PostChart = () => {
       <Legend />
       <Bar
         dataKey="pv"
-        fill="#8884d8"
+        fill="#a7b7dd"
         activeBar={{ fill: "pink", stroke: "blue" }}
         radius={[10, 10, 0, 0]}
       />
