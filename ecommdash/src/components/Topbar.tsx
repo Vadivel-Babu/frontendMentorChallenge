@@ -1,8 +1,9 @@
 import { Button } from "./ui/button";
 import { Moon, Sun } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
+import UserProfile from "./UserProfile";
 
 const Topbar = () => {
   const { theme, toggleTheme } = useContext(AppContext);
@@ -11,12 +12,7 @@ const Topbar = () => {
       <Button onClick={() => toggleTheme()} className="bg-primary-blue">
         {theme === "light" ? <Moon /> : <Sun />}
       </Button>
-      <Avatar size="lg" className="ml-2">
-        <AvatarImage src="https://github.com/shadcn.pn" />
-        <AvatarFallback className="bg-primary-blue text-md text-white">
-          u
-        </AvatarFallback>
-      </Avatar>
+      <UserProfile />
     </div>
   );
 };
