@@ -1,3 +1,5 @@
-# React E-commerce dashboard
+# React Blog dashboard
 
 ## features
+
+-- forget password
