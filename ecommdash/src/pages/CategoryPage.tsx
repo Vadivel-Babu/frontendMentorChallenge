@@ -1,10 +1,13 @@
+import Loader from "@/components/Loader";
 import Topbar from "@/components/Topbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
+import { useState } from "react";
 
 const CategoryPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <div>
       <Topbar />
@@ -14,17 +17,21 @@ const CategoryPage = () => {
         <Button className="bg-primary-blue">Add</Button>
         <Button className="bg-primary-blue">Add Bulk</Button>
       </div>
-      <div className="max-w-250 mx-auto border rounded-2xl p-2 min-h-50">
-        <Badge className="bg-primary-blue p-2 ">
-          hello
-          <Button
-            size={"xs"}
-            className="cursor-pointer bg-transperent p-0 ml-1.5"
-          >
-            <X />
-          </Button>
-        </Badge>
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="max-w-250 mx-auto border rounded-2xl p-2 min-h-50">
+          <Badge className="bg-primary-blue p-2 ">
+            hello
+            <Button
+              size={"xs"}
+              className="cursor-pointer bg-transperent p-0 ml-1.5"
+            >
+              <X />
+            </Button>
+          </Badge>
+        </div>
+      )}
     </div>
   );
 };
