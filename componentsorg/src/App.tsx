@@ -1,11 +1,13 @@
 import "./App.css";
+import ModalPage from "./pages/ModalPage";
 
 function App() {
   //const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className="text-red-400 font-bold text-9xl">hello</h1>
+      <h1>this is home page</h1>
+      <ModalPage />
     </>
   );
 }
