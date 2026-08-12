@@ -7,13 +7,12 @@ interface Switchprops {
 
 const Switch = ({ active, onSwitch }: Switchprops) => {
   return (
-    <div className="relative w-fit">
-      <div
-        className={`w-20 h-10 rounded-full ${active ? "bg-gray-300" : "bg-amber-300"}`}
-      ></div>
+    <div
+      className={`relative w-20 h-10 rounded-full ${active ? "bg-gray-300" : "bg-amber-300"}`}
+    >
       <div
         onClick={onSwitch}
-        className={`absolute transition-transform duration-300  top-1  ${active ? "translate-x-0" : "translate-x-full"} hover:cursor-pointer size-8 bg-black rounded-full`}
+        className={`absolute  transition-transform duration-200 ease-in-out   top-1 left-1  ${active ? "translate-x-0 bg-white" : "translate-x-10 bg-black"} hover:cursor-pointer size-8  rounded-full`}
       ></div>
     </div>
   );
