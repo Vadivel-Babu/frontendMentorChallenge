@@ -10,7 +10,8 @@ function App() {
   return (
     <>
       <h1>this is home page</h1>
-      <TabPage />
+      <SwitchPage />
+      {/* <TabPage /> */}
     </>
   );
 }

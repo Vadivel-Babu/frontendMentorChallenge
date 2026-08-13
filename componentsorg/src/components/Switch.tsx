@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getSwitchSize } from "../helpers/switchHelper";
 
 interface Switchprops {
   active: boolean;
+  size: "sm" | "md" | "lg" | "xl";
   onSwitch: () => void;
 }
 
-const Switch = ({ active, onSwitch }: Switchprops) => {
+const Switch = ({ active, onSwitch, size = "sm" }: Switchprops) => {
+  const switchSize = getSwitchSize(size);
+
   return (
     <div
-      className={`relative w-20 h-10 rounded-full ${active ? "bg-gray-300" : "bg-amber-300"}`}
+      onClick={onSwitch}
+      style={{ width: switchSize?.width, height: switchSize?.height }}
+      className={`relative rounded-full ${active ? "bg-gray-300" : "bg-amber-300"} hover:cursor-pointer`}
     >
       <div
-        onClick={onSwitch}
-        className={`absolute  transition-transform duration-200 ease-in-out   top-1 left-1  ${active ? "translate-x-0 bg-white" : "translate-x-10 bg-black"} hover:cursor-pointer size-8  rounded-full`}
+        style={{
+          width: switchSize?.thumbSize,
+          height: switchSize?.thumbSize,
+          top: switchSize?.position,
+          left: switchSize?.position,
+          transform: ` ${active ? "translateX(0)" : `translateX(${switchSize?.onPosition})`}`,
+        }}
+        className={`absolute  transition-transform duration-200 ease-in-out  ${active ? "translate-x-0 bg-white" : "translate-x-0 bg-black"}  rounded-full`}
       ></div>
     </div>
   );
