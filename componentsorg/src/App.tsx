@@ -10,8 +10,7 @@ function App() {
   //const [count, setCount] = useState(0)
 
   return (
-    <main className="bg-gray-50 h-full">
-      <h1>this is home page</h1>
+    <main className="">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/modal" element={<ModalPage />} />
