@@ -1,7 +1,12 @@
 import React from "react";
 import NavCard from "../components/NavCard";
 
-const navArr: any = [{ name: "switch" }, { name: "tab" }, { name: "modal" }];
+const navArr: any = [
+  { name: "switch" },
+  { name: "tab" },
+  { name: "modal" },
+  { name: "accordion" },
+];
 
 const HomePage = () => {
   return (
