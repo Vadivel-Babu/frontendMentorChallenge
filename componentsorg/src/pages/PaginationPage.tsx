@@ -7,7 +7,9 @@ const PaginationPage = () => {
     <div className="p-5">
       <Backbtn />
       <h1 className="text-2xl font-bold text-center mb-5">Pagination</h1>
-      <Pagination />
+      <div>
+        <Pagination />
+      </div>
     </div>
   );
 };

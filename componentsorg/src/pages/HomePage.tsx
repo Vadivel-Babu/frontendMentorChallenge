@@ -7,6 +7,7 @@ const navArr: any = [
   { name: "modal" },
   { name: "accordion" },
   { name: "pagination" },
+  { name: "carsoul" },
 ];
 
 const HomePage = () => {
