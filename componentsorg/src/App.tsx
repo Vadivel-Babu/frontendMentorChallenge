@@ -6,6 +6,7 @@ import SwitchPage from "./pages/SwitchPage";
 import TabPage from "./pages/TabPage";
 import HomePage from "./pages/HomePage";
 import AccordionPage from "./pages/AccordionPage";
+import PaginationPage from "./pages/PaginationPage";
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
         <Route path="/modal" element={<ModalPage />} />
         <Route path="/tab" element={<TabPage />} />
         <Route path="/switch" element={<SwitchPage />} />
+        <Route path="/pagination" element={<PaginationPage />} />
       </Routes>
     </main>
   );
