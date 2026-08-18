@@ -1,4 +1,3 @@
-import React from "react";
 import Backbtn from "../components/Backbtn";
 import Accordion from "../components/Accordion";
 

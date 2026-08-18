@@ -1,4 +1,3 @@
-import React from "react";
 import Pagination from "../components/Pagination";
 import Backbtn from "../components/Backbtn";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import Carasol from "../components/Carasol";
 import Backbtn from "../components/Backbtn";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import NavCard from "../components/NavCard";
 
 const navArr: any = [
