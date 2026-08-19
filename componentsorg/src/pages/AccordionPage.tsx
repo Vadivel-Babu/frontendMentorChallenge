@@ -8,6 +8,7 @@ const AccordionPage = () => {
       <h1 className="text-2xl font-bold text-center mb-5">Accordion</h1>
       <div>
         <Accordion />
+        <Accordion />
       </div>
     </div>
   );

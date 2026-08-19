@@ -8,7 +8,8 @@ import HomePage from "./pages/HomePage";
 import AccordionPage from "./pages/AccordionPage";
 import PaginationPage from "./pages/PaginationPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import Carasol from "./components/Carasol";
+
+import CaraselPage from "./pages/CaraselPage";
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -22,7 +23,7 @@ function App() {
         <Route path="/tab" element={<TabPage />} />
         <Route path="/switch" element={<SwitchPage />} />
         <Route path="/pagination" element={<PaginationPage />} />
-        <Route path="/carsoul" element={<Carasol />} />
+        <Route path="/carsoul" element={<CaraselPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </main>
