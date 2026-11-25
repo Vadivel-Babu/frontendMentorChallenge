@@ -10,14 +10,6 @@ const SignupForm = () => {
   const { mutate, isPending, isError, error, isSuccess } = useSignin();
 
   async function handleSignin() {
-    if (
-      data.name.trim() === "" ||
-      data.email.trim() === "" ||
-      data.password.trim() === ""
-    ) {
-      toast.error("all fields are required");
-      return;
-    }
     mutate(data, {
       onSuccess: (res) => {
         toast.success(res.message || "Successfully register");

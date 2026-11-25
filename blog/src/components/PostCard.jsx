@@ -73,7 +73,9 @@ const PostCard = ({ post, user }) => {
     const toastId = toast.loading("liking post...");
     likeMutate(data, {
       onSuccess: (res) => {
-        toast.success(res.message || "post liked successfully", {
+        console.log(res.liked);
+        const message = res.liked ? "post liked" : "post disliked";
+        toast.success(res.message || message, {
           id: toastId,
         });
       },
@@ -94,20 +96,20 @@ const PostCard = ({ post, user }) => {
       <div className="flex justify-between">
         <div className="flex items-center space-x-1">
           <Avatar color="cyan" src={post?.author_img}>
-            {post?.author_name[0]}
+            {post?.author?.name[0]}
           </Avatar>
           <div>
-            <h1 className="font-semibold "> {post?.author_name}</h1>
+            <h1 className="font-semibold "> {post?.author?.name}</h1>
             <div className="text-[12px] italic">
               Category:{" "}
               <Badge color="cyan" size="xs">
-                {post?.category}
+                {post?.category?.name}
               </Badge>
             </div>
           </div>
         </div>
         <div
-          className={`flex items-center space-x-1 ${post.userId === user.id ? "visible" : "invisible"}`}
+          className={`flex items-center space-x-1 ${post?.author?.id === user.id ? "visible" : "invisible"}`}
         >
           <ActionIcon
             variant="transparent"
@@ -129,7 +131,7 @@ const PostCard = ({ post, user }) => {
         <Image
           h={200}
           radius="md"
-          src={post?.img}
+          src={post?.image}
           fallbackSrc="https://placehold.co/600x400?text=Placeholder"
         />
         <h1 className="font-bold my-0.5 text-2xl">{post?.title}</h1>
@@ -153,20 +155,17 @@ const PostCard = ({ post, user }) => {
         </div>
       )}
       <div className="flex justify-between">
-        <Badge>like {post?.total_likes}</Badge>
-        <Badge>comment {post?.total_comments}</Badge>
+        <Badge>like {post?.likes_count}</Badge>
+        <Badge>comment {post?.comments_count}</Badge>
       </div>
       <div className="flex justify-evenly border-t my-3 pt-3">
         <Button
-          onClick={() => handleLike({ postId: post.id, userId: user.id })}
+          onClick={() => handleLike({ postId: post.id })}
           leftSection={<BiSolidLike />}
           variant={"transparent"}
-          color={post?.is_liked === 1 ? "blue" : "black"}
+          color={post?.isLiked ? "blue" : "black"}
         >
-          <Text visibleFrom="sm">
-            {" "}
-            {post?.is_liked === 1 ? "liked" : "like"}
-          </Text>
+          <Text visibleFrom="sm"> {post?.isLiked ? "liked" : "like"}</Text>
         </Button>
         <Button
           leftSection={<BiCommentDetail />}

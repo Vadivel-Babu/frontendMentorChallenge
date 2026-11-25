@@ -17,8 +17,10 @@ const HomePage = () => {
     search: "",
     category: "",
   });
-  const { data, isLoading } = useGetPosts(appliedFilters);
+  const { data: posts, isLoading } = useGetPosts(appliedFilters);
   const { user } = useContext(AuthContext);
+
+  console.log(posts?.data);
 
   function handleSearch() {
     setAppliedFilters(filters);
@@ -48,14 +50,14 @@ const HomePage = () => {
       ) : (
         <div className="block p-4 md:flex  justify-around md:pt-1 h-full w-full">
           <ProfileCard />
-          {data?.length === 0 && (
+          {posts?.data?.length === 0 && (
             <div className="mt-10 text-4xl">
               <p>Post Not Found</p>
               <Button onClick={reset}>Reset</Button>
             </div>
           )}
           <div className="flex-col space-y-1 h-[85dvh] overflow-y-scroll scrollbar-thin py-1">
-            {data?.map((post) => (
+            {posts?.data?.map((post) => (
               <PostCard key={post.id} post={post} user={user} />
             ))}
           </div>

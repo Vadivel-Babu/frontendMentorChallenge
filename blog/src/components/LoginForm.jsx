@@ -21,7 +21,7 @@ const LoginForm = () => {
     mutate(data, {
       onSuccess: (res) => {
         toast.success(res.message || "Successfully logged");
-        login(res.user, res.token);
+        login(res.user, res.access_token);
 
         setData({ email: "", password: "" });
         navigate("/");
